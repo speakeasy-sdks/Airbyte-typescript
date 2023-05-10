@@ -10,5 +10,5 @@ generation:
   telemetryEnabled: false
 typescript:
   version: 0.0.1
-  author: Airbyte
+  author: WayScript
   packageName: airbyte-test
