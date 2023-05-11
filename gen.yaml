@@ -11,4 +11,4 @@ generation:
 typescript:
   version: 0.0.1
   author: WayScript
-  packageName: airbyte-test
+  packageName: airbyte-oss
