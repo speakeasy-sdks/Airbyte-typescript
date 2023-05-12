@@ -6,13 +6,13 @@
 ### NPM
 
 ```bash
-npm add https://github.com/speakeasy-sdks/Airbyte-typescript
+npm add https://github.com/speakeasy-sdks/airbyte-oss-typescript
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/speakeasy-sdks/Airbyte-typescript
+yarn add https://github.com/speakeasy-sdks/airbyte-oss-typescript
 ```
 <!-- End SDK Installation -->
 
