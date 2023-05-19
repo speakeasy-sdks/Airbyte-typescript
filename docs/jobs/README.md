@@ -20,11 +20,11 @@ Cancels a job
 import { AirbyteTest } from "airbyte-test";
 import { CancelJobResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AttemptFailureOriginEnum,
-  AttemptFailureTypeEnum,
-  AttemptStatusEnum,
-  JobConfigTypeEnum,
-  JobStatusEnum,
+  AttemptFailureOrigin,
+  AttemptFailureType,
+  AttemptStatus,
+  JobConfigType,
+  JobStatus,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -69,14 +69,14 @@ Gets all information needed to debug this job
 import { AirbyteTest } from "airbyte-test";
 import { GetJobDebugInfoResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AttemptFailureOriginEnum,
-  AttemptFailureTypeEnum,
-  AttemptStatusEnum,
-  JobConfigTypeEnum,
-  JobStatusEnum,
-  JobTypeEnum,
-  ReleaseStageEnum,
-  SourceDefinitionReadSourceTypeEnum,
+  AttemptFailureOrigin,
+  AttemptFailureType,
+  AttemptStatus,
+  JobConfigType,
+  JobStatus,
+  JobType,
+  ReleaseStage,
+  SourceDefinitionReadSourceType,
 } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
@@ -101,11 +101,11 @@ Get information about a job
 import { AirbyteTest } from "airbyte-test";
 import { GetJobInfoResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AttemptFailureOriginEnum,
-  AttemptFailureTypeEnum,
-  AttemptStatusEnum,
-  JobConfigTypeEnum,
-  JobStatusEnum,
+  AttemptFailureOrigin,
+  AttemptFailureType,
+  AttemptStatus,
+  JobConfigType,
+  JobStatus,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -128,7 +128,7 @@ Get information about a job excluding attempt info and logs
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetJobInfoLightResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobConfigTypeEnum, JobStatusEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobConfigType, JobStatus } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -148,7 +148,7 @@ sdk.jobs.getJobInfoLight({
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetLastReplicationJobResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobConfigTypeEnum, JobStatusEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobConfigType, JobStatus } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -171,11 +171,11 @@ Returns recent jobs for a connection. Jobs are returned in descending order by c
 import { AirbyteTest } from "airbyte-test";
 import { ListJobsForResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AttemptFailureOriginEnum,
-  AttemptFailureTypeEnum,
-  AttemptStatusEnum,
-  JobConfigTypeEnum,
-  JobStatusEnum,
+  AttemptFailureOrigin,
+  AttemptFailureType,
+  AttemptStatus,
+  JobConfigType,
+  JobStatus,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -183,7 +183,7 @@ const sdk = new AirbyteTest();
 sdk.jobs.listJobsFor({
   configId: "earum",
   configTypes: [
-    JobConfigTypeEnum.ResetConnection,
+    JobConfigType.ResetConnection,
   ],
   includingJobId: 263346,
   pagination: {

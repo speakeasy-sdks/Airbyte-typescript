@@ -28,7 +28,7 @@ Check connection to the source
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CheckConnectionToSourceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { CheckConnectionReadStatusEnum, JobConfigTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { CheckConnectionReadStatus, JobConfigType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -50,7 +50,7 @@ Check connection for a proposed update to a source
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CheckConnectionToSourceForUpdateResponse } from "airbyte-test/dist/sdk/models/operations";
-import { CheckConnectionReadStatusEnum, JobConfigTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { CheckConnectionReadStatus, JobConfigType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -145,12 +145,12 @@ Discover the schema catalog of the source
 import { AirbyteTest } from "airbyte-test";
 import { DiscoverSchemaForSourceResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  FieldTransformTransformTypeEnum,
-  JobConfigTypeEnum,
-  StreamTransformTransformTypeEnum,
-  SyncModeEnum,
+  ConnectionStatus,
+  DestinationSyncMode,
+  FieldTransformTransformType,
+  JobConfigType,
+  StreamTransformTransformType,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -288,7 +288,7 @@ Should only called from worker, to write result from discover activity back to D
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { WriteDiscoverCatalogResultResponse } from "airbyte-test/dist/sdk/models/operations";
-import { DestinationSyncModeEnum, SyncModeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { DestinationSyncMode, SyncMode } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -303,7 +303,7 @@ sdk.source.writeDiscoverCatalogResult({
             "eos",
             "dolorem",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.AppendDedup,
+          destinationSyncMode: DestinationSyncMode.AppendDedup,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -351,7 +351,7 @@ sdk.source.writeDiscoverCatalogResult({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -377,9 +377,9 @@ sdk.source.writeDiscoverCatalogResult({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.FullRefresh,
-            SyncModeEnum.FullRefresh,
+            SyncMode.Incremental,
+            SyncMode.FullRefresh,
+            SyncMode.FullRefresh,
           ],
         },
       },
@@ -390,7 +390,7 @@ sdk.source.writeDiscoverCatalogResult({
             "commodi",
             "ipsam",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Overwrite,
+          destinationSyncMode: DestinationSyncMode.Overwrite,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -423,7 +423,7 @@ sdk.source.writeDiscoverCatalogResult({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -447,8 +447,8 @@ sdk.source.writeDiscoverCatalogResult({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -460,7 +460,7 @@ sdk.source.writeDiscoverCatalogResult({
             "deserunt",
             "fugit",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Overwrite,
+          destinationSyncMode: DestinationSyncMode.Overwrite,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -511,7 +511,7 @@ sdk.source.writeDiscoverCatalogResult({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.FullRefresh,
+          syncMode: SyncMode.FullRefresh,
         },
         stream: {
           defaultCursorField: [
@@ -538,7 +538,7 @@ sdk.source.writeDiscoverCatalogResult({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },

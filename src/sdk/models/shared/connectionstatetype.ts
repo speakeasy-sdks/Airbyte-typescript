@@ -5,7 +5,7 @@
 /**
  * Successful operation
  */
-export enum ConnectionStateTypeEnum {
+export enum ConnectionStateType {
   Global = "global",
   Stream = "stream",
   Legacy = "legacy",

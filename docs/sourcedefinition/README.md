@@ -27,7 +27,7 @@ Creates a custom sourceDefinition for the given workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CreateCustomSourceDefinitionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -48,7 +48,7 @@ sdk.sourceDefinition.createCustomSourceDefinition({
       },
       jobSpecific: [
         {
-          jobType: JobTypeEnum.Replicate,
+          jobType: JobType.Replicate,
           resourceRequirements: {
             cpuLimit: "facilis",
             cpuRequest: "cupiditate",
@@ -57,7 +57,7 @@ sdk.sourceDefinition.createCustomSourceDefinition({
           },
         },
         {
-          jobType: JobTypeEnum.DiscoverSchema,
+          jobType: JobType.DiscoverSchema,
           resourceRequirements: {
             cpuLimit: "provident",
             cpuRequest: "amet",
@@ -106,7 +106,7 @@ Get source
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetSourceDefinitionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -129,7 +129,7 @@ Get a sourceDefinition that is configured for the given workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetSourceDefinitionForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -153,7 +153,7 @@ grant a private, non-custom sourceDefinition to a given workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GrantSourceDefinitionToWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -177,7 +177,7 @@ Guaranteed to retrieve the latest information on supported sources.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListLatestSourceDefinitionsResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -198,7 +198,7 @@ List all private, non-custom sourceDefinitions, and for each indicate whether th
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListPrivateSourceDefinitionsResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -221,7 +221,7 @@ List all the sourceDefinitions the current Airbyte deployment is configured to u
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListSourceDefinitionsResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -242,7 +242,7 @@ List all the sourceDefinitions the given workspace is configured to use
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListSourceDefinitionsForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -287,7 +287,7 @@ Update a sourceDefinition
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { UpdateSourceDefinitionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum, SourceDefinitionReadSourceTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage, SourceDefinitionReadSourceType } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -303,7 +303,7 @@ sdk.sourceDefinition.updateSourceDefinition({
     },
     jobSpecific: [
       {
-        jobType: JobTypeEnum.DiscoverSchema,
+        jobType: JobType.DiscoverSchema,
         resourceRequirements: {
           cpuLimit: "odio",
           cpuRequest: "delectus",
@@ -312,7 +312,7 @@ sdk.sourceDefinition.updateSourceDefinition({
         },
       },
       {
-        jobType: JobTypeEnum.ConnectionUpdater,
+        jobType: JobType.ConnectionUpdater,
         resourceRequirements: {
           cpuLimit: "eius",
           cpuRequest: "eos",
@@ -321,7 +321,7 @@ sdk.sourceDefinition.updateSourceDefinition({
         },
       },
       {
-        jobType: JobTypeEnum.ResetConnection,
+        jobType: JobType.ResetConnection,
         resourceRequirements: {
           cpuLimit: "occaecati",
           cpuRequest: "debitis",

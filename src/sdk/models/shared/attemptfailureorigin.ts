@@ -5,7 +5,7 @@
 /**
  * Indicates where the error originated. If not set, the origin of error is not well known.
  */
-export enum AttemptFailureOriginEnum {
+export enum AttemptFailureOrigin {
   Source = "source",
   Destination = "destination",
   Replication = "replication",

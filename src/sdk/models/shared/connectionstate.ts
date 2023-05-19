@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { ConnectionStateTypeEnum } from "./connectionstatetypeenum";
+import { ConnectionStateType } from "./connectionstatetype";
 import { GlobalState } from "./globalstate";
 import { StreamState } from "./streamstate";
 import { Expose, Type } from "class-transformer";
@@ -27,7 +27,7 @@ export class ConnectionState extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "stateType" })
-  stateType: ConnectionStateTypeEnum;
+  stateType: ConnectionStateType;
 
   @SpeakeasyMetadata({ elemType: StreamState })
   @Expose({ name: "streamState" })

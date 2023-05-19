@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { GeographyEnum } from "./geographyenum";
+import { Geography } from "./geography";
 import { Notification } from "./notification";
 import { WebhookConfigRead } from "./webhookconfigread";
 import { Expose, Type } from "class-transformer";
@@ -22,7 +22,7 @@ export class WorkspaceRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "defaultGeography" })
-  defaultGeography?: GeographyEnum;
+  defaultGeography?: Geography;
 
   @SpeakeasyMetadata()
   @Expose({ name: "displaySetupWizard" })

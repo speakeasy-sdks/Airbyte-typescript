@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { SynchronousJobRead } from "./synchronousjobread";
 import { Expose, Type } from "class-transformer";
 
-export enum CheckConnectionReadStatusEnum {
+export enum CheckConnectionReadStatus {
   Succeeded = "succeeded",
   Failed = "failed",
 }
@@ -26,5 +26,5 @@ export class CheckConnectionRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: CheckConnectionReadStatusEnum;
+  status: CheckConnectionReadStatus;
 }

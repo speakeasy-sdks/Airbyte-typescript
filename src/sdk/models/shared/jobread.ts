@@ -3,8 +3,8 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { JobConfigTypeEnum } from "./jobconfigtypeenum";
-import { JobStatusEnum } from "./jobstatusenum";
+import { JobConfigType } from "./jobconfigtype";
+import { JobStatus } from "./jobstatus";
 import { ResetConfig } from "./resetconfig";
 import { Expose, Type } from "class-transformer";
 
@@ -15,7 +15,7 @@ export class JobRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "configType" })
-  configType: JobConfigTypeEnum;
+  configType: JobConfigType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "createdAt" })
@@ -39,7 +39,7 @@ export class JobRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: JobStatusEnum;
+  status: JobStatus;
 
   @SpeakeasyMetadata()
   @Expose({ name: "updatedAt" })

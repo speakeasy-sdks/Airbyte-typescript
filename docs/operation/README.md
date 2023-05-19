@@ -19,10 +19,10 @@ Check if an operation to be created is valid
 import { AirbyteTest } from "airbyte-test";
 import { CheckOperationResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  CheckOperationReadStatusEnum,
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
+  CheckOperationReadStatus,
+  OperatorNormalizationOption,
+  OperatorType,
+  OperatorWebhookWebhookType,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -35,9 +35,9 @@ sdk.operation.checkOperation({
     gitRepoUrl: "praesentium",
   },
   normalization: {
-    option: OperatorNormalizationOptionEnum.Basic,
+    option: OperatorNormalizationOption.Basic,
   },
-  operatorType: OperatorTypeEnum.Webhook,
+  operatorType: OperatorType.Webhook,
   webhook: {
     dbtCloud: {
       accountId: 221781,
@@ -46,7 +46,7 @@ sdk.operation.checkOperation({
     executionBody: "libero",
     executionUrl: "iste",
     webhookConfigId: "1c8d975e-0e84-419d-8f84-f144f3e07edc",
-    webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+    webhookType: OperatorWebhookWebhookType.DbtCloud,
   },
 }).then((res: CheckOperationResponse) => {
   if (res.statusCode == 200) {
@@ -64,11 +64,7 @@ Create an operation to be applied as part of a connection pipeline
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CreateOperationResponse } from "airbyte-test/dist/sdk/models/operations";
-import {
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-} from "airbyte-test/dist/sdk/models/shared";
+import { OperatorNormalizationOption, OperatorType, OperatorWebhookWebhookType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -82,9 +78,9 @@ sdk.operation.createOperation({
       gitRepoUrl: "laborum",
     },
     normalization: {
-      option: OperatorNormalizationOptionEnum.Basic,
+      option: OperatorNormalizationOption.Basic,
     },
-    operatorType: OperatorTypeEnum.Webhook,
+    operatorType: OperatorType.Webhook,
     webhook: {
       dbtCloud: {
         accountId: 842974,
@@ -93,7 +89,7 @@ sdk.operation.createOperation({
       executionBody: "aut",
       executionUrl: "ipsam",
       webhookConfigId: "a972e056-7282-427b-ad30-9470bf7a4fa8",
-      webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+      webhookType: OperatorWebhookWebhookType.DbtCloud,
     },
   },
   workspaceId: "7cf535a6-fae5-44eb-b60c-321f023b75d2",
@@ -134,11 +130,7 @@ Returns an operation
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetOperationResponse } from "airbyte-test/dist/sdk/models/operations";
-import {
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-} from "airbyte-test/dist/sdk/models/shared";
+import { OperatorNormalizationOption, OperatorType, OperatorWebhookWebhookType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -160,11 +152,7 @@ List operations for connection.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListOperationsForConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
-import {
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-} from "airbyte-test/dist/sdk/models/shared";
+import { OperatorNormalizationOption, OperatorType, OperatorWebhookWebhookType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -186,11 +174,7 @@ Update an operation
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { UpdateOperationResponse } from "airbyte-test/dist/sdk/models/operations";
-import {
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-} from "airbyte-test/dist/sdk/models/shared";
+import { OperatorNormalizationOption, OperatorType, OperatorWebhookWebhookType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -205,9 +189,9 @@ sdk.operation.updateOperation({
       gitRepoUrl: "corporis",
     },
     normalization: {
-      option: OperatorNormalizationOptionEnum.Basic,
+      option: OperatorNormalizationOption.Basic,
     },
-    operatorType: OperatorTypeEnum.Dbt,
+    operatorType: OperatorType.Dbt,
     webhook: {
       dbtCloud: {
         accountId: 435142,
@@ -216,7 +200,7 @@ sdk.operation.updateOperation({
       executionBody: "provident",
       executionUrl: "laudantium",
       webhookConfigId: "b5555408-0d40-4bca-8c6c-bd6b5f3ec909",
-      webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+      webhookType: OperatorWebhookWebhookType.DbtCloud,
     },
   },
 }).then((res: UpdateOperationResponse) => {

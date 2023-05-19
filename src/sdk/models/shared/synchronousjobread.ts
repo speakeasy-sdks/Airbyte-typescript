@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { JobConfigTypeEnum } from "./jobconfigtypeenum";
+import { JobConfigType } from "./jobconfigtype";
 import { LogRead } from "./logread";
 import { Expose, Type } from "class-transformer";
 
@@ -17,7 +17,7 @@ export class SynchronousJobRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "configType" })
-  configType: JobConfigTypeEnum;
+  configType: JobConfigType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "connectorConfigurationUpdated" })

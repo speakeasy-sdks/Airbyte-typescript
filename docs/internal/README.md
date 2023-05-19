@@ -18,7 +18,7 @@ Create or update the state for a connection.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CreateOrUpdateStateResponse } from "airbyte-test/dist/sdk/models/operations";
-import { ConnectionStateTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { ConnectionStateType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -71,7 +71,7 @@ sdk.internal.createOrUpdateState({
       "a": "animi",
       "maiores": "itaque",
     },
-    stateType: ConnectionStateTypeEnum.NotSet,
+    stateType: ConnectionStateType.NotSet,
     streamState: [
       {
         streamDescriptor: {
@@ -186,7 +186,7 @@ For worker to save the AttemptSyncConfig for an attempt.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { SaveSyncConfigResponse } from "airbyte-test/dist/sdk/models/operations";
-import { ConnectionStateTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { ConnectionStateType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -234,7 +234,7 @@ sdk.internal.saveSyncConfig({
         "non": "voluptates",
         "ad": "aliquam",
       },
-      stateType: ConnectionStateTypeEnum.NotSet,
+      stateType: ConnectionStateType.NotSet,
       streamState: [
         {
           streamDescriptor: {
@@ -309,7 +309,7 @@ Should only called from worker, to write result from discover activity back to D
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { WriteDiscoverCatalogResultResponse } from "airbyte-test/dist/sdk/models/operations";
-import { DestinationSyncModeEnum, SyncModeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { DestinationSyncMode, SyncMode } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -323,7 +323,7 @@ sdk.internal.writeDiscoverCatalogResult({
             "iste",
             "ullam",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.AppendDedup,
+          destinationSyncMode: DestinationSyncMode.AppendDedup,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -352,7 +352,7 @@ sdk.internal.writeDiscoverCatalogResult({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -389,7 +389,7 @@ sdk.internal.writeDiscoverCatalogResult({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -399,7 +399,7 @@ sdk.internal.writeDiscoverCatalogResult({
           cursorField: [
             "rerum",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -425,7 +425,7 @@ sdk.internal.writeDiscoverCatalogResult({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -456,8 +456,8 @@ sdk.internal.writeDiscoverCatalogResult({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.FullRefresh,
+            SyncMode.Incremental,
+            SyncMode.FullRefresh,
           ],
         },
       },

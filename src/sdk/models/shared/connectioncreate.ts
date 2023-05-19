@@ -6,11 +6,11 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AirbyteCatalog } from "./airbytecatalog";
 import { ConnectionSchedule } from "./connectionschedule";
 import { ConnectionScheduleData } from "./connectionscheduledata";
-import { ConnectionScheduleTypeEnum } from "./connectionscheduletypeenum";
-import { ConnectionStatusEnum } from "./connectionstatusenum";
-import { GeographyEnum } from "./geographyenum";
-import { NamespaceDefinitionTypeEnum } from "./namespacedefinitiontypeenum";
-import { NonBreakingChangesPreferenceEnum } from "./nonbreakingchangespreferenceenum";
+import { ConnectionScheduleType } from "./connectionscheduletype";
+import { ConnectionStatus } from "./connectionstatus";
+import { Geography } from "./geography";
+import { NamespaceDefinitionType } from "./namespacedefinitiontype";
+import { NonBreakingChangesPreference } from "./nonbreakingchangespreference";
 import { ResourceRequirements } from "./resourcerequirements";
 import { Expose, Type } from "class-transformer";
 
@@ -21,7 +21,7 @@ export class ConnectionCreate extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "geography" })
-  geography?: GeographyEnum;
+  geography?: Geography;
 
   /**
    * Optional name of the connection
@@ -35,7 +35,7 @@ export class ConnectionCreate extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "namespaceDefinition" })
-  namespaceDefinition?: NamespaceDefinitionTypeEnum;
+  namespaceDefinition?: NamespaceDefinitionType;
 
   /**
    * Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
@@ -46,7 +46,7 @@ export class ConnectionCreate extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "nonBreakingChangesPreference" })
-  nonBreakingChangesPreference?: NonBreakingChangesPreferenceEnum;
+  nonBreakingChangesPreference?: NonBreakingChangesPreference;
 
   @SpeakeasyMetadata()
   @Expose({ name: "notifySchemaChanges" })
@@ -92,7 +92,7 @@ export class ConnectionCreate extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "scheduleType" })
-  scheduleType?: ConnectionScheduleTypeEnum;
+  scheduleType?: ConnectionScheduleType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "sourceCatalogId" })
@@ -107,7 +107,7 @@ export class ConnectionCreate extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: ConnectionStatusEnum;
+  status: ConnectionStatus;
 
   /**
    * describes the available schema (catalog).

@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AttemptFailureSummary } from "./attemptfailuresummary";
 import { AttemptStats } from "./attemptstats";
-import { AttemptStatusEnum } from "./attemptstatusenum";
+import { AttemptStatus } from "./attemptstatus";
 import { AttemptStreamStats } from "./attemptstreamstats";
 import { Expose, Type } from "class-transformer";
 
@@ -37,7 +37,7 @@ export class AttemptRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: AttemptStatusEnum;
+  status: AttemptStatus;
 
   @SpeakeasyMetadata({ elemType: AttemptStreamStats })
   @Expose({ name: "streamStats" })

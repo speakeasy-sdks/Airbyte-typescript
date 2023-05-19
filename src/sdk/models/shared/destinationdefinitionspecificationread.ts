@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AdvancedAuth } from "./advancedauth";
 import { DestinationAuthSpecification } from "./destinationauthspecification";
-import { DestinationSyncModeEnum } from "./destinationsyncmodeenum";
+import { DestinationSyncMode } from "./destinationsyncmode";
 import { SynchronousJobRead } from "./synchronousjobread";
 import { Expose, Type } from "class-transformer";
 
@@ -45,5 +45,5 @@ export class DestinationDefinitionSpecificationRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "supportedDestinationSyncModes" })
-  supportedDestinationSyncModes?: DestinationSyncModeEnum[];
+  supportedDestinationSyncModes?: DestinationSyncMode[];
 }

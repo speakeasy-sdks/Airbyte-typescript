@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
-export enum ConnectionScheduleDataBasicScheduleTimeUnitEnum {
+export enum ConnectionScheduleDataBasicScheduleTimeUnit {
   Minutes = "minutes",
   Hours = "hours",
   Days = "days",
@@ -16,7 +16,7 @@ export enum ConnectionScheduleDataBasicScheduleTimeUnitEnum {
 export class ConnectionScheduleDataBasicSchedule extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "timeUnit" })
-  timeUnit: ConnectionScheduleDataBasicScheduleTimeUnitEnum;
+  timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit;
 
   @SpeakeasyMetadata()
   @Expose({ name: "units" })

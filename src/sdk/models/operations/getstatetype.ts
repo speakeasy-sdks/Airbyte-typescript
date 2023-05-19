@@ -11,7 +11,7 @@ export class GetStateTypeResponse extends SpeakeasyBase {
    * Successful operation
    */
   @SpeakeasyMetadata()
-  connectionStateType?: shared.ConnectionStateTypeEnum;
+  connectionStateType?: shared.ConnectionStateType;
 
   @SpeakeasyMetadata()
   contentType: string;

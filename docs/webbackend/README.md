@@ -30,7 +30,7 @@ Fetch the current state type for a connection.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetStateTypeResponse } from "airbyte-test/dist/sdk/models/operations";
-import { ConnectionStateTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { ConnectionStateType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -72,33 +72,33 @@ Create a connection
 import { AirbyteTest } from "airbyte-test";
 import { WebBackendCreateConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  FieldTransformTransformTypeEnum,
-  GeographyEnum,
-  JobStatusEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-  SchemaChangeEnum,
-  StreamTransformTransformTypeEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  FieldTransformTransformType,
+  Geography,
+  JobStatus,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  OperatorNormalizationOption,
+  OperatorType,
+  OperatorWebhookWebhookType,
+  SchemaChange,
+  StreamTransformTransformType,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
 sdk.webBackend.webBackendCreateConnection({
   destinationId: "cd5fbcf7-9da1-48a7-822b-f95894e6861a",
-  geography: GeographyEnum.Eu,
+  geography: Geography.Eu,
   name: "Pedro Haley",
-  namespaceDefinition: NamespaceDefinitionTypeEnum.Customformat,
+  namespaceDefinition: NamespaceDefinitionType.Customformat,
   namespaceFormat: "${SOURCE_NAMESPACE}",
-  nonBreakingChangesPreference: NonBreakingChangesPreferenceEnum.Ignore,
+  nonBreakingChangesPreference: NonBreakingChangesPreference.Ignore,
   operationIds: [
     "751c9fe8-f750-42bf-9c34-50841f176445",
     "6379f3fb-27e2-41f8-a265-7b36fc6b9f58",
@@ -116,9 +116,9 @@ sdk.webBackend.webBackendCreateConnection({
           gitRepoUrl: "aut",
         },
         normalization: {
-          option: OperatorNormalizationOptionEnum.Basic,
+          option: OperatorNormalizationOption.Basic,
         },
-        operatorType: OperatorTypeEnum.Normalization,
+        operatorType: OperatorType.Normalization,
         webhook: {
           dbtCloud: {
             accountId: 611485,
@@ -127,7 +127,7 @@ sdk.webBackend.webBackendCreateConnection({
           executionBody: "repellat",
           executionUrl: "voluptatum",
           webhookConfigId: "d29de1dd-7097-4b5d-a08c-57fa6c78a216",
-          webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+          webhookType: OperatorWebhookWebhookType.DbtCloud,
         },
       },
       workspaceId: "e19bafec-a619-4149-8140-b64ff8ae170e",
@@ -142,9 +142,9 @@ sdk.webBackend.webBackendCreateConnection({
           gitRepoUrl: "recusandae",
         },
         normalization: {
-          option: OperatorNormalizationOptionEnum.Basic,
+          option: OperatorNormalizationOption.Basic,
         },
-        operatorType: OperatorTypeEnum.Normalization,
+        operatorType: OperatorType.Normalization,
         webhook: {
           dbtCloud: {
             accountId: 652013,
@@ -153,7 +153,7 @@ sdk.webBackend.webBackendCreateConnection({
           executionBody: "blanditiis",
           executionUrl: "suscipit",
           webhookConfigId: "85559667-32aa-45dc-b668-2cb70f8cfd5f",
-          webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+          webhookType: OperatorWebhookWebhookType.DbtCloud,
         },
       },
       workspaceId: "b6e91b9a-9f74-4846-a2c3-309db0536d9e",
@@ -167,12 +167,12 @@ sdk.webBackend.webBackendCreateConnection({
     memoryRequest: "consequatur",
   },
   schedule: {
-    timeUnit: ConnectionScheduleTimeUnitEnum.Minutes,
+    timeUnit: ConnectionScheduleTimeUnit.Minutes,
     units: 434632,
   },
   scheduleData: {
     basicSchedule: {
-      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnitEnum.Months,
+      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit.Months,
       units: 337581,
     },
     cron: {
@@ -180,10 +180,10 @@ sdk.webBackend.webBackendCreateConnection({
       cronTimeZone: "omnis",
     },
   },
-  scheduleType: ConnectionScheduleTypeEnum.Manual,
+  scheduleType: ConnectionScheduleType.Manual,
   sourceCatalogId: "c11a25a8-bf92-4f97-828a-d9a9f8bf8221",
   sourceId: "125359d9-8387-4f7a-b9cd-72cd2484da21",
-  status: ConnectionStatusEnum.Inactive,
+  status: ConnectionStatus.Inactive,
   syncCatalog: {
     streams: [
       {
@@ -195,7 +195,7 @@ sdk.webBackend.webBackendCreateConnection({
             "eligendi",
             "numquam",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -244,7 +244,7 @@ sdk.webBackend.webBackendCreateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -268,7 +268,7 @@ sdk.webBackend.webBackendCreateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -291,22 +291,22 @@ Get a connection
 import { AirbyteTest } from "airbyte-test";
 import { WebBackendGetConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  FieldTransformTransformTypeEnum,
-  GeographyEnum,
-  JobStatusEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-  SchemaChangeEnum,
-  StreamTransformTransformTypeEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  FieldTransformTransformType,
+  Geography,
+  JobStatus,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  OperatorNormalizationOption,
+  OperatorType,
+  OperatorWebhookWebhookType,
+  SchemaChange,
+  StreamTransformTransformType,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -352,11 +352,11 @@ Returns all non-deleted connections for a workspace.
 import { AirbyteTest } from "airbyte-test";
 import { WebBackendListConnectionsForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  JobStatusEnum,
-  SchemaChangeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  JobStatus,
+  SchemaChange,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -389,7 +389,7 @@ Returns all available geographies in which a data sync can run.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { WebBackendListGeographiesResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -417,33 +417,33 @@ containing the updated stream needs to be sent.
 import { AirbyteTest } from "airbyte-test";
 import { WebBackendUpdateConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  FieldTransformTransformTypeEnum,
-  GeographyEnum,
-  JobStatusEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  OperatorNormalizationOptionEnum,
-  OperatorTypeEnum,
-  OperatorWebhookWebhookTypeEnum,
-  SchemaChangeEnum,
-  StreamTransformTransformTypeEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  FieldTransformTransformType,
+  Geography,
+  JobStatus,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  OperatorNormalizationOption,
+  OperatorType,
+  OperatorWebhookWebhookType,
+  SchemaChange,
+  StreamTransformTransformType,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
 sdk.webBackend.webBackendUpdateConnection({
   connectionId: "c7abf616-ea5c-4716-8193-4b90f2e09d19",
-  geography: GeographyEnum.Eu,
+  geography: Geography.Eu,
   name: "Dr. Lorene Runte",
-  namespaceDefinition: NamespaceDefinitionTypeEnum.Customformat,
+  namespaceDefinition: NamespaceDefinitionType.Customformat,
   namespaceFormat: "${SOURCE_NAMESPACE}",
-  nonBreakingChangesPreference: NonBreakingChangesPreferenceEnum.Ignore,
+  nonBreakingChangesPreference: NonBreakingChangesPreference.Ignore,
   notifySchemaChanges: false,
   operations: [
     {
@@ -457,9 +457,9 @@ sdk.webBackend.webBackendUpdateConnection({
           gitRepoUrl: "excepturi",
         },
         normalization: {
-          option: OperatorNormalizationOptionEnum.Basic,
+          option: OperatorNormalizationOption.Basic,
         },
-        operatorType: OperatorTypeEnum.Normalization,
+        operatorType: OperatorType.Normalization,
         webhook: {
           dbtCloud: {
             accountId: 139505,
@@ -468,7 +468,7 @@ sdk.webBackend.webBackendUpdateConnection({
           executionBody: "maxime",
           executionUrl: "excepturi",
           webhookConfigId: "ff57491a-abfa-42e7-a1f0-ca4d456ef103",
-          webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+          webhookType: OperatorWebhookWebhookType.DbtCloud,
         },
       },
       workspaceId: "1e6899f0-c200-41e2-acd5-5cc0584a184d",
@@ -484,9 +484,9 @@ sdk.webBackend.webBackendUpdateConnection({
           gitRepoUrl: "sed",
         },
         normalization: {
-          option: OperatorNormalizationOptionEnum.Basic,
+          option: OperatorNormalizationOption.Basic,
         },
-        operatorType: OperatorTypeEnum.Dbt,
+        operatorType: OperatorType.Dbt,
         webhook: {
           dbtCloud: {
             accountId: 803763,
@@ -495,7 +495,7 @@ sdk.webBackend.webBackendUpdateConnection({
           executionBody: "quibusdam",
           executionUrl: "facere",
           webhookConfigId: "db46aa1c-fd6d-4828-9a01-319112964664",
-          webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+          webhookType: OperatorWebhookWebhookType.DbtCloud,
         },
       },
       workspaceId: "5c1d81f2-9042-4f56-9b7a-ff0ea2216cbe",
@@ -511,9 +511,9 @@ sdk.webBackend.webBackendUpdateConnection({
           gitRepoUrl: "blanditiis",
         },
         normalization: {
-          option: OperatorNormalizationOptionEnum.Basic,
+          option: OperatorNormalizationOption.Basic,
         },
-        operatorType: OperatorTypeEnum.Normalization,
+        operatorType: OperatorType.Normalization,
         webhook: {
           dbtCloud: {
             accountId: 259019,
@@ -522,7 +522,7 @@ sdk.webBackend.webBackendUpdateConnection({
           executionBody: "nisi",
           executionUrl: "placeat",
           webhookConfigId: "bdeecf6b-99bc-4635-a2eb-fdf55c294c06",
-          webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+          webhookType: OperatorWebhookWebhookType.DbtCloud,
         },
       },
       workspaceId: "0b06a128-7764-4eef-ad0c-6d6ed9c73dd6",
@@ -538,9 +538,9 @@ sdk.webBackend.webBackendUpdateConnection({
           gitRepoUrl: "repellat",
         },
         normalization: {
-          option: OperatorNormalizationOptionEnum.Basic,
+          option: OperatorNormalizationOption.Basic,
         },
-        operatorType: OperatorTypeEnum.Dbt,
+        operatorType: OperatorType.Dbt,
         webhook: {
           dbtCloud: {
             accountId: 693988,
@@ -549,7 +549,7 @@ sdk.webBackend.webBackendUpdateConnection({
           executionBody: "molestiae",
           executionUrl: "vitae",
           webhookConfigId: "9890f42a-4bb4-438d-85b2-60591d745e3c",
-          webhookType: OperatorWebhookWebhookTypeEnum.DbtCloud,
+          webhookType: OperatorWebhookWebhookType.DbtCloud,
         },
       },
       workspaceId: "2059c9c3-f567-4e0e-a527-65b1d62fcdac",
@@ -563,12 +563,12 @@ sdk.webBackend.webBackendUpdateConnection({
     memoryRequest: "sunt",
   },
   schedule: {
-    timeUnit: ConnectionScheduleTimeUnitEnum.Minutes,
+    timeUnit: ConnectionScheduleTimeUnit.Minutes,
     units: 80673,
   },
   scheduleData: {
     basicSchedule: {
-      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnitEnum.Hours,
+      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit.Hours,
       units: 799730,
     },
     cron: {
@@ -576,10 +576,10 @@ sdk.webBackend.webBackendUpdateConnection({
       cronTimeZone: "consequuntur",
     },
   },
-  scheduleType: ConnectionScheduleTypeEnum.Manual,
+  scheduleType: ConnectionScheduleType.Manual,
   skipReset: false,
   sourceCatalogId: "39e8f25c-d0d1-49d9-99f4-39e39266cbd9",
-  status: ConnectionStatusEnum.Active,
+  status: ConnectionStatus.Active,
   syncCatalog: {
     streams: [
       {
@@ -590,7 +590,7 @@ sdk.webBackend.webBackendUpdateConnection({
             "odit",
             "rerum",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -626,7 +626,7 @@ sdk.webBackend.webBackendUpdateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -650,9 +650,9 @@ sdk.webBackend.webBackendUpdateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -664,7 +664,7 @@ sdk.webBackend.webBackendUpdateConnection({
             "et",
             "accusamus",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Overwrite,
+          destinationSyncMode: DestinationSyncMode.Overwrite,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -704,7 +704,7 @@ sdk.webBackend.webBackendUpdateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.FullRefresh,
+          syncMode: SyncMode.FullRefresh,
         },
         stream: {
           defaultCursorField: [
@@ -735,7 +735,7 @@ sdk.webBackend.webBackendUpdateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.FullRefresh,
+            SyncMode.FullRefresh,
           ],
         },
       },
@@ -746,7 +746,7 @@ sdk.webBackend.webBackendUpdateConnection({
             "molestias",
             "atque",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -788,7 +788,7 @@ sdk.webBackend.webBackendUpdateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -824,10 +824,10 @@ sdk.webBackend.webBackendUpdateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.FullRefresh,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.FullRefresh,
           ],
         },
       },
@@ -838,7 +838,7 @@ sdk.webBackend.webBackendUpdateConnection({
             "facilis",
             "earum",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -883,7 +883,7 @@ sdk.webBackend.webBackendUpdateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.FullRefresh,
+          syncMode: SyncMode.FullRefresh,
         },
         stream: {
           defaultCursorField: [
@@ -920,7 +920,7 @@ sdk.webBackend.webBackendUpdateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.FullRefresh,
+            SyncMode.FullRefresh,
           ],
         },
       },

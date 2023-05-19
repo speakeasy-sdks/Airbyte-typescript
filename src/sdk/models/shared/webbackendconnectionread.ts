@@ -7,16 +7,16 @@ import { AirbyteCatalog } from "./airbytecatalog";
 import { CatalogDiff } from "./catalogdiff";
 import { ConnectionSchedule } from "./connectionschedule";
 import { ConnectionScheduleData } from "./connectionscheduledata";
-import { ConnectionScheduleTypeEnum } from "./connectionscheduletypeenum";
-import { ConnectionStatusEnum } from "./connectionstatusenum";
+import { ConnectionScheduleType } from "./connectionscheduletype";
+import { ConnectionStatus } from "./connectionstatus";
 import { DestinationRead } from "./destinationread";
-import { GeographyEnum } from "./geographyenum";
-import { JobStatusEnum } from "./jobstatusenum";
-import { NamespaceDefinitionTypeEnum } from "./namespacedefinitiontypeenum";
-import { NonBreakingChangesPreferenceEnum } from "./nonbreakingchangespreferenceenum";
+import { Geography } from "./geography";
+import { JobStatus } from "./jobstatus";
+import { NamespaceDefinitionType } from "./namespacedefinitiontype";
+import { NonBreakingChangesPreference } from "./nonbreakingchangespreference";
 import { OperationRead } from "./operationread";
 import { ResourceRequirements } from "./resourcerequirements";
-import { SchemaChangeEnum } from "./schemachangeenum";
+import { SchemaChange } from "./schemachange";
 import { SourceRead } from "./sourceread";
 import { Expose, Type } from "class-transformer";
 
@@ -51,7 +51,7 @@ export class WebBackendConnectionRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "geography" })
-  geography?: GeographyEnum;
+  geography?: Geography;
 
   @SpeakeasyMetadata()
   @Expose({ name: "isSyncing" })
@@ -66,7 +66,7 @@ export class WebBackendConnectionRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "latestSyncJobStatus" })
-  latestSyncJobStatus?: JobStatusEnum;
+  latestSyncJobStatus?: JobStatus;
 
   @SpeakeasyMetadata()
   @Expose({ name: "name" })
@@ -77,7 +77,7 @@ export class WebBackendConnectionRead extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "namespaceDefinition" })
-  namespaceDefinition?: NamespaceDefinitionTypeEnum;
+  namespaceDefinition?: NamespaceDefinitionType;
 
   /**
    * Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
@@ -88,7 +88,7 @@ export class WebBackendConnectionRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "nonBreakingChangesPreference" })
-  nonBreakingChangesPreference: NonBreakingChangesPreferenceEnum;
+  nonBreakingChangesPreference: NonBreakingChangesPreference;
 
   @SpeakeasyMetadata()
   @Expose({ name: "notifySchemaChanges" })
@@ -139,11 +139,11 @@ export class WebBackendConnectionRead extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "scheduleType" })
-  scheduleType?: ConnectionScheduleTypeEnum;
+  scheduleType?: ConnectionScheduleType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "schemaChange" })
-  schemaChange: SchemaChangeEnum;
+  schemaChange: SchemaChange;
 
   @SpeakeasyMetadata()
   @Expose({ name: "source" })
@@ -159,7 +159,7 @@ export class WebBackendConnectionRead extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: ConnectionStatusEnum;
+  status: ConnectionStatus;
 
   /**
    * describes the available schema (catalog).

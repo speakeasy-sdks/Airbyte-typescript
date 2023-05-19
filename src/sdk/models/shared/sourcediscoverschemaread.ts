@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AirbyteCatalog } from "./airbytecatalog";
 import { CatalogDiff } from "./catalogdiff";
-import { ConnectionStatusEnum } from "./connectionstatusenum";
+import { ConnectionStatus } from "./connectionstatus";
 import { SynchronousJobRead } from "./synchronousjobread";
 import { Expose, Type } from "class-transformer";
 
@@ -42,7 +42,7 @@ export class SourceDiscoverSchemaRead extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "connectionStatus" })
-  connectionStatus?: ConnectionStatusEnum;
+  connectionStatus?: ConnectionStatus;
 
   @SpeakeasyMetadata()
   @Expose({ name: "jobInfo" })

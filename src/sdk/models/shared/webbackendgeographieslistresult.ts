@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { GeographyEnum } from "./geographyenum";
+import { Geography } from "./geography";
 import { Expose } from "class-transformer";
 
 /**
@@ -12,5 +12,5 @@ import { Expose } from "class-transformer";
 export class WebBackendGeographiesListResult extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "geographies" })
-  geographies: GeographyEnum[];
+  geographies: Geography[];
 }

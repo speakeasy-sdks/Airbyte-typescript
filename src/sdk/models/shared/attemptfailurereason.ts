@@ -3,8 +3,8 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { AttemptFailureOriginEnum } from "./attemptfailureoriginenum";
-import { AttemptFailureTypeEnum } from "./attemptfailuretypeenum";
+import { AttemptFailureOrigin } from "./attemptfailureorigin";
+import { AttemptFailureType } from "./attemptfailuretype";
 import { Expose } from "class-transformer";
 
 export class AttemptFailureReason extends SpeakeasyBase {
@@ -17,14 +17,14 @@ export class AttemptFailureReason extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "failureOrigin" })
-  failureOrigin?: AttemptFailureOriginEnum;
+  failureOrigin?: AttemptFailureOrigin;
 
   /**
    * Categorizes well known errors into types for programmatic handling. If not set, the type of error is not well known.
    */
   @SpeakeasyMetadata()
   @Expose({ name: "failureType" })
-  failureType?: AttemptFailureTypeEnum;
+  failureType?: AttemptFailureType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "internalMessage" })

@@ -13,7 +13,7 @@ Try sending a notifications
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { TryNotificationConfigResponse } from "airbyte-test/dist/sdk/models/operations";
-import { NotificationReadStatusEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { NotificationReadStatus, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -22,7 +22,7 @@ sdk.notifications.tryNotificationConfig({
     "explicabo": "impedit",
     "aliquid": "quis",
   },
-  notificationType: NotificationTypeEnum.Customerio,
+  notificationType: NotificationType.Customerio,
   sendOnFailure: false,
   sendOnSuccess: false,
   slackConfiguration: {

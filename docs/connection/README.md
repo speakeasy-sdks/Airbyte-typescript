@@ -26,26 +26,26 @@ Create a connection between a source and a destination
 import { AirbyteTest } from "airbyte-test";
 import { CreateConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  GeographyEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  Geography,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
 sdk.connection.createConnection({
   destinationId: "b5e6e13b-99d4-488e-9e91-e450ad2abd44",
-  geography: GeographyEnum.Auto,
+  geography: Geography.Auto,
   name: "Mr. Shelly Lueilwitz",
-  namespaceDefinition: NamespaceDefinitionTypeEnum.Destination,
+  namespaceDefinition: NamespaceDefinitionType.Destination,
   namespaceFormat: "${SOURCE_NAMESPACE}",
-  nonBreakingChangesPreference: NonBreakingChangesPreferenceEnum.Ignore,
+  nonBreakingChangesPreference: NonBreakingChangesPreference.Ignore,
   notifySchemaChanges: false,
   operationIds: [
     "a94bb4f6-3c96-49e9-a3ef-a77dfb14cd66",
@@ -58,12 +58,12 @@ sdk.connection.createConnection({
     memoryRequest: "enim",
   },
   schedule: {
-    timeUnit: ConnectionScheduleTimeUnitEnum.Months,
+    timeUnit: ConnectionScheduleTimeUnit.Months,
     units: 965417,
   },
   scheduleData: {
     basicSchedule: {
-      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnitEnum.Weeks,
+      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit.Weeks,
       units: 588465,
     },
     cron: {
@@ -71,10 +71,10 @@ sdk.connection.createConnection({
       cronTimeZone: "id",
     },
   },
-  scheduleType: ConnectionScheduleTypeEnum.Basic,
+  scheduleType: ConnectionScheduleType.Basic,
   sourceCatalogId: "8f3a6699-7074-4ba4-869b-6e2141959890",
   sourceId: "afa563e2-516f-4e4c-8b71-1e5b7fd2ed02",
-  status: ConnectionStatusEnum.Inactive,
+  status: ConnectionStatus.Inactive,
   syncCatalog: {
     streams: [
       {
@@ -83,7 +83,7 @@ sdk.connection.createConnection({
           cursorField: [
             "quo",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.AppendDedup,
+          destinationSyncMode: DestinationSyncMode.AppendDedup,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -134,7 +134,7 @@ sdk.connection.createConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -173,10 +173,10 @@ sdk.connection.createConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -188,7 +188,7 @@ sdk.connection.createConnection({
             "dolorem",
             "dolorem",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -217,7 +217,7 @@ sdk.connection.createConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.FullRefresh,
+          syncMode: SyncMode.FullRefresh,
         },
         stream: {
           defaultCursorField: [
@@ -250,7 +250,7 @@ sdk.connection.createConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.FullRefresh,
+            SyncMode.FullRefresh,
           ],
         },
       },
@@ -263,7 +263,7 @@ sdk.connection.createConnection({
             "suscipit",
             "deserunt",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Overwrite,
+          destinationSyncMode: DestinationSyncMode.Overwrite,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -310,7 +310,7 @@ sdk.connection.createConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -331,7 +331,7 @@ sdk.connection.createConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -375,15 +375,15 @@ Get a connection
 import { AirbyteTest } from "airbyte-test";
 import { GetConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  GeographyEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  Geography,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -407,15 +407,15 @@ List connections for workspace, including deleted connections.
 import { AirbyteTest } from "airbyte-test";
 import { ListAllConnectionsForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  GeographyEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  Geography,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -439,15 +439,15 @@ List connections for workspace. Does not return deleted connections.
 import { AirbyteTest } from "airbyte-test";
 import { ListConnectionsForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  GeographyEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  Geography,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -471,11 +471,11 @@ Reset the data for the connection. Deletes data generated by the connection in t
 import { AirbyteTest } from "airbyte-test";
 import { ResetConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AttemptFailureOriginEnum,
-  AttemptFailureTypeEnum,
-  AttemptStatusEnum,
-  JobConfigTypeEnum,
-  JobStatusEnum,
+  AttemptFailureOrigin,
+  AttemptFailureType,
+  AttemptStatus,
+  JobConfigType,
+  JobStatus,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -499,15 +499,15 @@ Search connections
 import { AirbyteTest } from "airbyte-test";
 import { SearchConnectionsResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  GeographyEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  Geography,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -524,16 +524,16 @@ sdk.connection.searchConnections({
   },
   destinationId: "efd121aa-6f1e-4674-bdb0-4f15756082d6",
   name: "Miss Percy Parisian",
-  namespaceDefinition: NamespaceDefinitionTypeEnum.Source,
+  namespaceDefinition: NamespaceDefinitionType.Source,
   namespaceFormat: "${SOURCE_NAMESPACE}",
   prefix: "at",
   schedule: {
-    timeUnit: ConnectionScheduleTimeUnitEnum.Minutes,
+    timeUnit: ConnectionScheduleTimeUnit.Minutes,
     units: 454162,
   },
   scheduleData: {
     basicSchedule: {
-      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnitEnum.Minutes,
+      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit.Minutes,
       units: 326701,
     },
     cron: {
@@ -541,7 +541,7 @@ sdk.connection.searchConnections({
       cronTimeZone: "consectetur",
     },
   },
-  scheduleType: ConnectionScheduleTypeEnum.Manual,
+  scheduleType: ConnectionScheduleType.Manual,
   source: {
     connectionConfiguration: "iste",
     name: "Ms. Kenneth Ledner",
@@ -551,7 +551,7 @@ sdk.connection.searchConnections({
     workspaceId: "0b375ed4-f6fb-4ee4-9f33-317fe35b60eb",
   },
   sourceId: "1ea42655-5ba3-4c28-b44e-d53b88f3a8d8",
-  status: ConnectionStatusEnum.Deprecated,
+  status: ConnectionStatus.Deprecated,
 }).then((res: SearchConnectionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -569,11 +569,11 @@ Trigger a manual sync of the connection
 import { AirbyteTest } from "airbyte-test";
 import { SyncConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AttemptFailureOriginEnum,
-  AttemptFailureTypeEnum,
-  AttemptStatusEnum,
-  JobConfigTypeEnum,
-  JobStatusEnum,
+  AttemptFailureOrigin,
+  AttemptFailureType,
+  AttemptStatus,
+  JobConfigType,
+  JobStatus,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -601,15 +601,15 @@ containing the updated stream needs to be sent.
 import { AirbyteTest } from "airbyte-test";
 import { UpdateConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionScheduleDataBasicScheduleTimeUnitEnum,
-  ConnectionScheduleTimeUnitEnum,
-  ConnectionScheduleTypeEnum,
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  GeographyEnum,
-  NamespaceDefinitionTypeEnum,
-  NonBreakingChangesPreferenceEnum,
-  SyncModeEnum,
+  ConnectionScheduleDataBasicScheduleTimeUnit,
+  ConnectionScheduleTimeUnit,
+  ConnectionScheduleType,
+  ConnectionStatus,
+  DestinationSyncMode,
+  Geography,
+  NamespaceDefinitionType,
+  NonBreakingChangesPreference,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
@@ -617,11 +617,11 @@ const sdk = new AirbyteTest();
 sdk.connection.updateConnection({
   breakingChange: false,
   connectionId: "4294e369-8f44-47f6-83e8-b445e80ca55e",
-  geography: GeographyEnum.Eu,
+  geography: Geography.Eu,
   name: "Martin Beatty",
-  namespaceDefinition: NamespaceDefinitionTypeEnum.Source,
+  namespaceDefinition: NamespaceDefinitionType.Source,
   namespaceFormat: "${SOURCE_NAMESPACE}",
-  nonBreakingChangesPreference: NonBreakingChangesPreferenceEnum.Ignore,
+  nonBreakingChangesPreference: NonBreakingChangesPreference.Ignore,
   notifySchemaChanges: false,
   operationIds: [
     "1858b6a8-9fbe-43a5-aa8e-4824d0ab4075",
@@ -637,12 +637,12 @@ sdk.connection.updateConnection({
     memoryRequest: "a",
   },
   schedule: {
-    timeUnit: ConnectionScheduleTimeUnitEnum.Days,
+    timeUnit: ConnectionScheduleTimeUnit.Days,
     units: 300029,
   },
   scheduleData: {
     basicSchedule: {
-      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnitEnum.Months,
+      timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit.Months,
       units: 160467,
     },
     cron: {
@@ -650,9 +650,9 @@ sdk.connection.updateConnection({
       cronTimeZone: "officiis",
     },
   },
-  scheduleType: ConnectionScheduleTypeEnum.Basic,
+  scheduleType: ConnectionScheduleType.Basic,
   sourceCatalogId: "73e922a5-7a15-4be3-a060-807e2b6e3ab8",
-  status: ConnectionStatusEnum.Inactive,
+  status: ConnectionStatus.Inactive,
   syncCatalog: {
     streams: [
       {
@@ -664,7 +664,7 @@ sdk.connection.updateConnection({
             "perspiciatis",
             "nihil",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Overwrite,
+          destinationSyncMode: DestinationSyncMode.Overwrite,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -700,7 +700,7 @@ sdk.connection.updateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -736,10 +736,10 @@ sdk.connection.updateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },
@@ -751,7 +751,7 @@ sdk.connection.updateConnection({
             "quis",
             "inventore",
           ],
-          destinationSyncMode: DestinationSyncModeEnum.Append,
+          destinationSyncMode: DestinationSyncMode.Append,
           fieldSelectionEnabled: false,
           primaryKey: [
             [
@@ -781,7 +781,7 @@ sdk.connection.updateConnection({
             },
           ],
           suggested: false,
-          syncMode: SyncModeEnum.Incremental,
+          syncMode: SyncMode.Incremental,
         },
         stream: {
           defaultCursorField: [
@@ -805,8 +805,8 @@ sdk.connection.updateConnection({
             ],
           ],
           supportedSyncModes: [
-            SyncModeEnum.Incremental,
-            SyncModeEnum.Incremental,
+            SyncMode.Incremental,
+            SyncMode.Incremental,
           ],
         },
       },

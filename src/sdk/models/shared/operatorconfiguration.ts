@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { OperatorDbt } from "./operatordbt";
 import { OperatorNormalization } from "./operatornormalization";
-import { OperatorTypeEnum } from "./operatortypeenum";
+import { OperatorType } from "./operatortype";
 import { OperatorWebhook } from "./operatorwebhook";
 import { Expose, Type } from "class-transformer";
 
@@ -22,7 +22,7 @@ export class OperatorConfiguration extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "operatorType" })
-  operatorType: OperatorTypeEnum;
+  operatorType: OperatorType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "webhook" })

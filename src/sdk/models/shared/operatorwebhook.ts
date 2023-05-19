@@ -21,7 +21,7 @@ export class OperatorWebhookDbtCloud extends SpeakeasyBase {
   jobId: number;
 }
 
-export enum OperatorWebhookWebhookTypeEnum {
+export enum OperatorWebhookWebhookType {
   DbtCloud = "dbtCloud",
 }
 
@@ -54,5 +54,5 @@ export class OperatorWebhook extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "webhookType" })
-  webhookType?: OperatorWebhookWebhookTypeEnum;
+  webhookType?: OperatorWebhookWebhookType;
 }

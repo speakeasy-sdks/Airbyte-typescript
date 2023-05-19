@@ -8,7 +8,7 @@ import { FieldRemove } from "./fieldremove";
 import { FieldSchemaUpdate } from "./fieldschemaupdate";
 import { Expose, Type } from "class-transformer";
 
-export enum FieldTransformTransformTypeEnum {
+export enum FieldTransformTransformType {
   AddField = "add_field",
   RemoveField = "remove_field",
   UpdateFieldSchema = "update_field_schema",
@@ -41,7 +41,7 @@ export class FieldTransform extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "transformType" })
-  transformType: FieldTransformTransformTypeEnum;
+  transformType: FieldTransformTransformType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "updateFieldSchema" })

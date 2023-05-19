@@ -5,7 +5,7 @@
 /**
  * type/source of logs produced
  */
-export enum LogTypeEnum {
+export enum LogType {
   Server = "server",
   Scheduler = "scheduler",
 }

@@ -15,7 +15,7 @@ Run check connection for a given destination configuration
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ExecuteDestinationCheckConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { CheckConnectionReadStatusEnum, JobConfigTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { CheckConnectionReadStatus, JobConfigType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -40,7 +40,7 @@ Run check connection for a given source configuration
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ExecuteSourceCheckConnectionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { CheckConnectionReadStatusEnum, JobConfigTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { CheckConnectionReadStatus, JobConfigType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -66,12 +66,12 @@ Run discover schema for a given source a source configuration
 import { AirbyteTest } from "airbyte-test";
 import { ExecuteSourceDiscoverSchemaResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  ConnectionStatusEnum,
-  DestinationSyncModeEnum,
-  FieldTransformTransformTypeEnum,
-  JobConfigTypeEnum,
-  StreamTransformTransformTypeEnum,
-  SyncModeEnum,
+  ConnectionStatus,
+  DestinationSyncMode,
+  FieldTransformTransformType,
+  JobConfigType,
+  StreamTransformTransformType,
+  SyncMode,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();

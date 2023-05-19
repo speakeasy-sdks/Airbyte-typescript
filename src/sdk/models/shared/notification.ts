@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { NotificationTypeEnum } from "./notificationtypeenum";
+import { NotificationType } from "./notificationtype";
 import { SlackNotificationConfiguration } from "./slacknotificationconfiguration";
 import { Expose, Type } from "class-transformer";
 
@@ -14,7 +14,7 @@ export class Notification extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "notificationType" })
-  notificationType: NotificationTypeEnum;
+  notificationType: NotificationType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "sendOnFailure" })

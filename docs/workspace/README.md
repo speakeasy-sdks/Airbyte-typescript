@@ -25,13 +25,13 @@ Creates a workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CreateWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
 sdk.workspace.createWorkspace({
   anonymousDataCollection: false,
-  defaultGeography: GeographyEnum.Auto,
+  defaultGeography: Geography.Auto,
   displaySetupWizard: false,
   email: "Franco30@yahoo.com",
   name: "Luz Hudson",
@@ -43,7 +43,7 @@ sdk.workspace.createWorkspace({
         "doloremque": "officiis",
         "nisi": "reprehenderit",
       },
-      notificationType: NotificationTypeEnum.Customerio,
+      notificationType: NotificationType.Customerio,
       sendOnFailure: false,
       sendOnSuccess: false,
       slackConfiguration: {
@@ -56,7 +56,7 @@ sdk.workspace.createWorkspace({
         "facere": "tenetur",
         "saepe": "assumenda",
       },
-      notificationType: NotificationTypeEnum.Slack,
+      notificationType: NotificationType.Slack,
       sendOnFailure: false,
       sendOnSuccess: false,
       slackConfiguration: {
@@ -68,7 +68,7 @@ sdk.workspace.createWorkspace({
         "sit": "recusandae",
         "a": "exercitationem",
       },
-      notificationType: NotificationTypeEnum.Slack,
+      notificationType: NotificationType.Slack,
       sendOnFailure: false,
       sendOnSuccess: false,
       slackConfiguration: {
@@ -121,7 +121,7 @@ Find workspace by ID
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -143,7 +143,7 @@ Find workspace by connection id
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetWorkspaceByConnectionIdResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -165,7 +165,7 @@ Find workspace by slug
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetWorkspaceBySlugResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -187,7 +187,7 @@ List all workspaces registered in the current Airbyte deployment
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListWorkspacesResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -207,13 +207,13 @@ Update workspace state
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { UpdateWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
 sdk.workspace.updateWorkspace({
   anonymousDataCollection: false,
-  defaultGeography: GeographyEnum.Auto,
+  defaultGeography: Geography.Auto,
   displaySetupWizard: false,
   email: "Effie2@gmail.com",
   initialSetupComplete: false,
@@ -223,7 +223,7 @@ sdk.workspace.updateWorkspace({
       customerioConfiguration: {
         "quibusdam": "autem",
       },
-      notificationType: NotificationTypeEnum.Customerio,
+      notificationType: NotificationType.Customerio,
       sendOnFailure: false,
       sendOnSuccess: false,
       slackConfiguration: {
@@ -236,7 +236,7 @@ sdk.workspace.updateWorkspace({
         "aliquam": "ea",
         "aliquam": "corporis",
       },
-      notificationType: NotificationTypeEnum.Customerio,
+      notificationType: NotificationType.Customerio,
       sendOnFailure: false,
       sendOnSuccess: false,
       slackConfiguration: {
@@ -247,7 +247,7 @@ sdk.workspace.updateWorkspace({
       customerioConfiguration: {
         "aut": "molestias",
       },
-      notificationType: NotificationTypeEnum.Slack,
+      notificationType: NotificationType.Slack,
       sendOnFailure: false,
       sendOnSuccess: false,
       slackConfiguration: {
@@ -311,7 +311,7 @@ Update workspace name
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { UpdateWorkspaceNameResponse } from "airbyte-test/dist/sdk/models/operations";
-import { GeographyEnum, NotificationTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { Geography, NotificationType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 

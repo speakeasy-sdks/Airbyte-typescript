@@ -5,7 +5,7 @@
 /**
  * enum that describes the different types of jobs that the platform runs.
  */
-export enum JobTypeEnum {
+export enum JobType {
   GetSpec = "get_spec",
   CheckConnection = "check_connection",
   DiscoverSchema = "discover_schema",

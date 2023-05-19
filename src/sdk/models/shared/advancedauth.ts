@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { OAuthConfigSpecification } from "./oauthconfigspecification";
 import { Expose, Type } from "class-transformer";
 
-export enum AdvancedAuthAuthFlowTypeEnum {
+export enum AdvancedAuthAuthFlowType {
   Oauth20 = "oauth2.0",
   Oauth10 = "oauth1.0",
 }
@@ -14,7 +14,7 @@ export enum AdvancedAuthAuthFlowTypeEnum {
 export class AdvancedAuth extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "authFlowType" })
-  authFlowType?: AdvancedAuthAuthFlowTypeEnum;
+  authFlowType?: AdvancedAuthAuthFlowType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "oauthConfigSpecification" })

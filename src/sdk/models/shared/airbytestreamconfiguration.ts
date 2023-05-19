@@ -3,9 +3,9 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { DestinationSyncModeEnum } from "./destinationsyncmodeenum";
+import { DestinationSyncMode } from "./destinationsyncmode";
 import { SelectedFieldInfo } from "./selectedfieldinfo";
-import { SyncModeEnum } from "./syncmodeenum";
+import { SyncMode } from "./syncmode";
 import { Expose, Type } from "class-transformer";
 
 /**
@@ -28,7 +28,7 @@ export class AirbyteStreamConfiguration extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "destinationSyncMode" })
-  destinationSyncMode: DestinationSyncModeEnum;
+  destinationSyncMode: DestinationSyncMode;
 
   /**
    * Whether field selection should be enabled. If this is true, only the properties in `selectedFields` will be included.
@@ -68,5 +68,5 @@ export class AirbyteStreamConfiguration extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "syncMode" })
-  syncMode: SyncModeEnum;
+  syncMode: SyncMode;
 }

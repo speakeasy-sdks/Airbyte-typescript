@@ -75,7 +75,7 @@ For worker to save the AttemptSyncConfig for an attempt.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { SaveSyncConfigResponse } from "airbyte-test/dist/sdk/models/operations";
-import { ConnectionStateTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { ConnectionStateType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -129,7 +129,7 @@ sdk.attempt.saveSyncConfig({
       state: {
         "quo": "sequi",
       },
-      stateType: ConnectionStateTypeEnum.NotSet,
+      stateType: ConnectionStateType.NotSet,
       streamState: [
         {
           streamDescriptor: {

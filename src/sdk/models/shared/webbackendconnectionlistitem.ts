@@ -4,11 +4,11 @@
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConnectionScheduleData } from "./connectionscheduledata";
-import { ConnectionScheduleTypeEnum } from "./connectionscheduletypeenum";
-import { ConnectionStatusEnum } from "./connectionstatusenum";
+import { ConnectionScheduleType } from "./connectionscheduletype";
+import { ConnectionStatus } from "./connectionstatus";
 import { DestinationSnippetRead } from "./destinationsnippetread";
-import { JobStatusEnum } from "./jobstatusenum";
-import { SchemaChangeEnum } from "./schemachangeenum";
+import { JobStatus } from "./jobstatus";
+import { SchemaChange } from "./schemachange";
 import { SourceSnippetRead } from "./sourcesnippetread";
 import { Expose, Type } from "class-transformer";
 
@@ -38,7 +38,7 @@ export class WebBackendConnectionListItem extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "latestSyncJobStatus" })
-  latestSyncJobStatus?: JobStatusEnum;
+  latestSyncJobStatus?: JobStatus;
 
   @SpeakeasyMetadata()
   @Expose({ name: "name" })
@@ -57,11 +57,11 @@ export class WebBackendConnectionListItem extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "scheduleType" })
-  scheduleType?: ConnectionScheduleTypeEnum;
+  scheduleType?: ConnectionScheduleType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "schemaChange" })
-  schemaChange: SchemaChangeEnum;
+  schemaChange: SchemaChange;
 
   @SpeakeasyMetadata()
   @Expose({ name: "source" })
@@ -73,5 +73,5 @@ export class WebBackendConnectionListItem extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: ConnectionStatusEnum;
+  status: ConnectionStatus;
 }

@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { JobTypeEnum } from "./jobtypeenum";
+import { JobType } from "./jobtype";
 import { ResourceRequirements } from "./resourcerequirements";
 import { Expose, Type } from "class-transformer";
 
@@ -16,7 +16,7 @@ export class JobTypeResourceLimit extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "jobType" })
-  jobType: JobTypeEnum;
+  jobType: JobType;
 
   /**
    * optional resource requirements to run workers (blank for unbounded allocations)

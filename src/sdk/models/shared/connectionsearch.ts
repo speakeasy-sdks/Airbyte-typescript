@@ -5,10 +5,10 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConnectionSchedule } from "./connectionschedule";
 import { ConnectionScheduleData } from "./connectionscheduledata";
-import { ConnectionScheduleTypeEnum } from "./connectionscheduletypeenum";
-import { ConnectionStatusEnum } from "./connectionstatusenum";
+import { ConnectionScheduleType } from "./connectionscheduletype";
+import { ConnectionStatus } from "./connectionstatus";
 import { DestinationSearch } from "./destinationsearch";
-import { NamespaceDefinitionTypeEnum } from "./namespacedefinitiontypeenum";
+import { NamespaceDefinitionType } from "./namespacedefinitiontype";
 import { SourceSearch } from "./sourcesearch";
 import { Expose, Type } from "class-transformer";
 
@@ -35,7 +35,7 @@ export class ConnectionSearch extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "namespaceDefinition" })
-  namespaceDefinition?: NamespaceDefinitionTypeEnum;
+  namespaceDefinition?: NamespaceDefinitionType;
 
   /**
    * Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
@@ -72,7 +72,7 @@ export class ConnectionSearch extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "scheduleType" })
-  scheduleType?: ConnectionScheduleTypeEnum;
+  scheduleType?: ConnectionScheduleType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "source" })
@@ -88,5 +88,5 @@ export class ConnectionSearch extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status?: ConnectionStatusEnum;
+  status?: ConnectionStatus;
 }

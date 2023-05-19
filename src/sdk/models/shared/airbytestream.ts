@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { SyncModeEnum } from "./syncmodeenum";
+import { SyncMode } from "./syncmode";
 import { Expose } from "class-transformer";
 
 /**
@@ -54,5 +54,5 @@ export class AirbyteStream extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "supportedSyncModes" })
-  supportedSyncModes?: SyncModeEnum[];
+  supportedSyncModes?: SyncMode[];
 }

@@ -18,7 +18,7 @@ Create or update the state for a connection.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CreateOrUpdateStateResponse } from "airbyte-test/dist/sdk/models/operations";
-import { ConnectionStateTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { ConnectionStateType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -77,7 +77,7 @@ sdk.state.createOrUpdateState({
     state: {
       "accusamus": "quod",
     },
-    stateType: ConnectionStateTypeEnum.Global,
+    stateType: ConnectionStateType.Global,
     streamState: [
       {
         streamDescriptor: {
@@ -115,7 +115,7 @@ Fetch the current state for a connection.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetStateResponse } from "airbyte-test/dist/sdk/models/operations";
-import { ConnectionStateTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { ConnectionStateType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 

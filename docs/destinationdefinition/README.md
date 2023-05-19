@@ -27,7 +27,7 @@ Creates a custom destinationDefinition for the given workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CreateCustomDestinationDefinitionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -48,7 +48,7 @@ sdk.destinationDefinition.createCustomDestinationDefinition({
       },
       jobSpecific: [
         {
-          jobType: JobTypeEnum.ResetConnection,
+          jobType: JobType.ResetConnection,
           resourceRequirements: {
             cpuLimit: "quis",
             cpuRequest: "beatae",
@@ -57,7 +57,7 @@ sdk.destinationDefinition.createCustomDestinationDefinition({
           },
         },
         {
-          jobType: JobTypeEnum.Replicate,
+          jobType: JobType.Replicate,
           resourceRequirements: {
             cpuLimit: "cupiditate",
             cpuRequest: "fugit",
@@ -106,7 +106,7 @@ Get destinationDefinition
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetDestinationDefinitionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -129,7 +129,7 @@ Get a destinationDefinition that is configured for the given workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetDestinationDefinitionForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -153,7 +153,7 @@ grant a private, non-custom destinationDefinition to a given workspace
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GrantDestinationDefinitionToWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -177,7 +177,7 @@ List all the destinationDefinitions the current Airbyte deployment is configured
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListDestinationDefinitionsResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -198,7 +198,7 @@ List all the destinationDefinitions the given workspace is configured to use
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListDestinationDefinitionsForWorkspaceResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -221,7 +221,7 @@ Guaranteed to retrieve the latest information on supported destinations.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListLatestDestinationDefinitionsResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -242,7 +242,7 @@ List all private, non-custom destinationDefinitions, and for each indicate wheth
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { ListPrivateDestinationDefinitionsResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -287,7 +287,7 @@ Update destinationDefinition
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { UpdateDestinationDefinitionResponse } from "airbyte-test/dist/sdk/models/operations";
-import { JobTypeEnum, ReleaseStageEnum } from "airbyte-test/dist/sdk/models/shared";
+import { JobType, ReleaseStage } from "airbyte-test/dist/sdk/models/shared";
 import { RFCDate } from "airbyte-test/dist/sdk/types";
 
 const sdk = new AirbyteTest();
@@ -304,7 +304,7 @@ sdk.destinationDefinition.updateDestinationDefinition({
     },
     jobSpecific: [
       {
-        jobType: JobTypeEnum.Replicate,
+        jobType: JobType.Replicate,
         resourceRequirements: {
           cpuLimit: "minus",
           cpuRequest: "sunt",
@@ -313,7 +313,7 @@ sdk.destinationDefinition.updateDestinationDefinition({
         },
       },
       {
-        jobType: JobTypeEnum.Sync,
+        jobType: JobType.Sync,
         resourceRequirements: {
           cpuLimit: "et",
           cpuRequest: "facilis",

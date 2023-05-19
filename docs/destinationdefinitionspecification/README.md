@@ -18,10 +18,10 @@ Get specification for a destinationDefinition
 import { AirbyteTest } from "airbyte-test";
 import { GetDestinationDefinitionSpecificationResponse } from "airbyte-test/dist/sdk/models/operations";
 import {
-  AdvancedAuthAuthFlowTypeEnum,
-  DestinationAuthSpecificationAuthTypeEnum,
-  DestinationSyncModeEnum,
-  JobConfigTypeEnum,
+  AdvancedAuthAuthFlowType,
+  DestinationAuthSpecificationAuthType,
+  DestinationSyncMode,
+  JobConfigType,
 } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();

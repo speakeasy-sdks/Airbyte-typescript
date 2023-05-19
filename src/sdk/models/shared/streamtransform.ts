@@ -7,7 +7,7 @@ import { FieldTransform } from "./fieldtransform";
 import { StreamDescriptor } from "./streamdescriptor";
 import { Expose, Type } from "class-transformer";
 
-export enum StreamTransformTransformTypeEnum {
+export enum StreamTransformTransformType {
   AddStream = "add_stream",
   RemoveStream = "remove_stream",
   UpdateStream = "update_stream",
@@ -21,7 +21,7 @@ export class StreamTransform extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "transformType" })
-  transformType: StreamTransformTransformTypeEnum;
+  transformType: StreamTransformTransformType;
 
   /**
    * list of field transformations. order does not matter.

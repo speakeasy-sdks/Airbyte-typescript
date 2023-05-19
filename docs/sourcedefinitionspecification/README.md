@@ -17,11 +17,7 @@ Get specification for a SourceDefinition.
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { GetSourceDefinitionSpecificationResponse } from "airbyte-test/dist/sdk/models/operations";
-import {
-  AdvancedAuthAuthFlowTypeEnum,
-  JobConfigTypeEnum,
-  SourceAuthSpecificationAuthTypeEnum,
-} from "airbyte-test/dist/sdk/models/shared";
+import { AdvancedAuthAuthFlowType, JobConfigType, SourceAuthSpecificationAuthType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 

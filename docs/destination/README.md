@@ -25,7 +25,7 @@ Check connection to the destination
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CheckConnectionToDestinationResponse } from "airbyte-test/dist/sdk/models/operations";
-import { CheckConnectionReadStatusEnum, JobConfigTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { CheckConnectionReadStatus, JobConfigType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 
@@ -47,7 +47,7 @@ Check connection for a proposed update to a destination
 ```typescript
 import { AirbyteTest } from "airbyte-test";
 import { CheckConnectionToDestinationForUpdateResponse } from "airbyte-test/dist/sdk/models/operations";
-import { CheckConnectionReadStatusEnum, JobConfigTypeEnum } from "airbyte-test/dist/sdk/models/shared";
+import { CheckConnectionReadStatus, JobConfigType } from "airbyte-test/dist/sdk/models/shared";
 
 const sdk = new AirbyteTest();
 

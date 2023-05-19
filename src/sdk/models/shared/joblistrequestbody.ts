@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { JobConfigTypeEnum } from "./jobconfigtypeenum";
+import { JobConfigType } from "./jobconfigtype";
 import { Pagination } from "./pagination";
 import { Expose, Type } from "class-transformer";
 
@@ -14,7 +14,7 @@ export class JobListRequestBody extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "configTypes" })
-  configTypes: JobConfigTypeEnum[];
+  configTypes: JobConfigType[];
 
   @SpeakeasyMetadata()
   @Expose({ name: "includingJobId" })

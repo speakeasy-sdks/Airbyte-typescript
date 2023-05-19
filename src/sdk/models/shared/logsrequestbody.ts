@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { LogTypeEnum } from "./logtypeenum";
+import { LogType } from "./logtype";
 import { Expose } from "class-transformer";
 
 export class LogsRequestBody extends SpeakeasyBase {
@@ -12,5 +12,5 @@ export class LogsRequestBody extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   @Expose({ name: "logType" })
-  logType: LogTypeEnum;
+  logType: LogType;
 }

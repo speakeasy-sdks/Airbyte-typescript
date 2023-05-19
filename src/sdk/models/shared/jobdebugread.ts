@@ -4,8 +4,8 @@
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { DestinationDefinitionRead } from "./destinationdefinitionread";
-import { JobConfigTypeEnum } from "./jobconfigtypeenum";
-import { JobStatusEnum } from "./jobstatusenum";
+import { JobConfigType } from "./jobconfigtype";
+import { JobStatus } from "./jobstatus";
 import { SourceDefinitionRead } from "./sourcedefinitionread";
 import { Expose, Type } from "class-transformer";
 
@@ -20,7 +20,7 @@ export class JobDebugRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "configType" })
-  configType: JobConfigTypeEnum;
+  configType: JobConfigType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "destinationDefinition" })
@@ -38,5 +38,5 @@ export class JobDebugRead extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "status" })
-  status: JobStatusEnum;
+  status: JobStatus;
 }
