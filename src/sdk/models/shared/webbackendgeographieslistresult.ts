@@ -10,7 +10,7 @@ import { Expose } from "class-transformer";
  * Successful operation
  */
 export class WebBackendGeographiesListResult extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "geographies" })
-  geographies: Geography[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "geographies" })
+    geographies: Geography[];
 }

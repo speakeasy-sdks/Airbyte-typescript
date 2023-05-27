@@ -9,7 +9,7 @@ import { Expose } from "class-transformer";
  * Successful operation
  */
 export class OAuthConsentRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "consentUrl" })
-  consentUrl: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "consentUrl" })
+    consentUrl: string;
 }

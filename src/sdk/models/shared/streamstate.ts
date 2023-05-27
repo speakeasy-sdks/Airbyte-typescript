@@ -7,12 +7,12 @@ import { StreamDescriptor } from "./streamdescriptor";
 import { Expose, Type } from "class-transformer";
 
 export class StreamState extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "streamDescriptor" })
-  @Type(() => StreamDescriptor)
-  streamDescriptor: StreamDescriptor;
+    @SpeakeasyMetadata()
+    @Expose({ name: "streamDescriptor" })
+    @Type(() => StreamDescriptor)
+    streamDescriptor: StreamDescriptor;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "streamState" })
-  streamState?: Record<string, any>;
+    @SpeakeasyMetadata()
+    @Expose({ name: "streamState" })
+    streamState?: Record<string, any>;
 }

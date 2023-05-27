@@ -6,7 +6,7 @@
  * determine how the schedule data should be interpreted
  */
 export enum ConnectionScheduleType {
-  Manual = "manual",
-  Basic = "basic",
-  Cron = "cron",
+    Manual = "manual",
+    Basic = "basic",
+    Cron = "cron",
 }

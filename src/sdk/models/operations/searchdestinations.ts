@@ -7,24 +7,24 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class SearchDestinationsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  destinationReadList?: shared.DestinationReadList;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    destinationReadList?: shared.DestinationReadList;
 
-  /**
-   * Input failed validation
-   */
-  @SpeakeasyMetadata()
-  invalidInputExceptionInfo?: shared.InvalidInputExceptionInfo;
+    /**
+     * Input failed validation
+     */
+    @SpeakeasyMetadata()
+    invalidInputExceptionInfo?: shared.InvalidInputExceptionInfo;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

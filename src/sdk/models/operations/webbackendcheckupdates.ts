@@ -7,18 +7,18 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class WebBackendCheckUpdatesResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  webBackendCheckUpdatesRead?: shared.WebBackendCheckUpdatesRead;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    webBackendCheckUpdatesRead?: shared.WebBackendCheckUpdatesRead;
 }

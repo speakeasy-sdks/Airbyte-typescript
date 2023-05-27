@@ -6,36 +6,36 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class CompleteSourceOauthRequest extends SpeakeasyBase {
-  /**
-   * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "oAuthInputConfiguration" })
-  oAuthInputConfiguration?: any;
+    /**
+     * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "oAuthInputConfiguration" })
+    oAuthInputConfiguration?: any;
 
-  /**
-   * The query parameters present in the redirect URL after a user granted consent e.g auth code
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "queryParams" })
-  queryParams?: Record<string, any>;
+    /**
+     * The query parameters present in the redirect URL after a user granted consent e.g auth code
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "queryParams" })
+    queryParams?: Record<string, any>;
 
-  /**
-   * When completing OAuth flow to gain an access token, some API sometimes requires to verify that the app re-send the redirectUrl that was used when consent was given.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "redirectUrl" })
-  redirectUrl?: string;
+    /**
+     * When completing OAuth flow to gain an access token, some API sometimes requires to verify that the app re-send the redirectUrl that was used when consent was given.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "redirectUrl" })
+    redirectUrl?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinitionId" })
-  sourceDefinitionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinitionId" })
+    sourceDefinitionId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceId" })
-  sourceId?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceId" })
+    sourceId?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

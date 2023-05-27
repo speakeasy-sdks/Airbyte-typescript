@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class OperationReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: OperationRead })
-  @Expose({ name: "operations" })
-  @Type(() => OperationRead)
-  operations: OperationRead[];
+    @SpeakeasyMetadata({ elemType: OperationRead })
+    @Expose({ name: "operations" })
+    @Type(() => OperationRead)
+    operations: OperationRead[];
 }

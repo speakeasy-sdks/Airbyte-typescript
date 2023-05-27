@@ -3,7 +3,7 @@
  */
 
 export enum OperatorType {
-  Normalization = "normalization",
-  Dbt = "dbt",
-  Webhook = "webhook",
+    Normalization = "normalization",
+    Dbt = "dbt",
+    Webhook = "webhook",
 }

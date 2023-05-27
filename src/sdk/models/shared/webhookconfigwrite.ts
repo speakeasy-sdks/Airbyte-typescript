@@ -6,24 +6,24 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class WebhookConfigWrite extends SpeakeasyBase {
-  /**
-   * an auth token, to be passed as the value for an HTTP Authorization header.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "authToken" })
-  authToken?: string;
+    /**
+     * an auth token, to be passed as the value for an HTTP Authorization header.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "authToken" })
+    authToken?: string;
 
-  /**
-   * human readable name for this webhook e.g. for UI display.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name?: string;
+    /**
+     * human readable name for this webhook e.g. for UI display.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name?: string;
 
-  /**
-   * if supplied, the webhook config will be validated by checking that this URL returns a 2xx response.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "validationUrl" })
-  validationUrl?: string;
+    /**
+     * if supplied, the webhook config will be validated by checking that this URL returns a 2xx response.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "validationUrl" })
+    validationUrl?: string;
 }

@@ -10,12 +10,12 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class PrivateSourceDefinitionRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "granted" })
-  granted: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "granted" })
+    granted: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinition" })
-  @Type(() => SourceDefinitionRead)
-  sourceDefinition: SourceDefinitionRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinition" })
+    @Type(() => SourceDefinitionRead)
+    sourceDefinition: SourceDefinitionRead;
 }

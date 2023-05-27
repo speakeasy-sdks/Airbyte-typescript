@@ -6,19 +6,19 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class AttemptNormalizationStatusRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "attemptNumber" })
-  attemptNumber?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "attemptNumber" })
+    attemptNumber?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "hasNormalizationFailed" })
-  hasNormalizationFailed?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "hasNormalizationFailed" })
+    hasNormalizationFailed?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "hasRecordsCommitted" })
-  hasRecordsCommitted?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "hasRecordsCommitted" })
+    hasRecordsCommitted?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "recordsCommitted" })
-  recordsCommitted?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "recordsCommitted" })
+    recordsCommitted?: number;
 }

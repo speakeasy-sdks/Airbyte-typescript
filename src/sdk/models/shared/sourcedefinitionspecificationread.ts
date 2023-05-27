@@ -12,33 +12,33 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class SourceDefinitionSpecificationRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "advancedAuth" })
-  @Type(() => AdvancedAuth)
-  advancedAuth?: AdvancedAuth;
+    @SpeakeasyMetadata()
+    @Expose({ name: "advancedAuth" })
+    @Type(() => AdvancedAuth)
+    advancedAuth?: AdvancedAuth;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "authSpecification" })
-  @Type(() => SourceAuthSpecification)
-  authSpecification?: SourceAuthSpecification;
+    @SpeakeasyMetadata()
+    @Expose({ name: "authSpecification" })
+    @Type(() => SourceAuthSpecification)
+    authSpecification?: SourceAuthSpecification;
 
-  /**
-   * The specification for what values are required to configure the sourceDefinition.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectionSpecification" })
-  connectionSpecification?: Record<string, any>;
+    /**
+     * The specification for what values are required to configure the sourceDefinition.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectionSpecification" })
+    connectionSpecification?: Record<string, any>;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "documentationUrl" })
-  documentationUrl?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "documentationUrl" })
+    documentationUrl?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "jobInfo" })
-  @Type(() => SynchronousJobRead)
-  jobInfo: SynchronousJobRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "jobInfo" })
+    @Type(() => SynchronousJobRead)
+    jobInfo: SynchronousJobRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinitionId" })
-  sourceDefinitionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinitionId" })
+    sourceDefinitionId: string;
 }

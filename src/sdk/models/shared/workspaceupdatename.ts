@@ -6,11 +6,11 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class WorkspaceUpdateName extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

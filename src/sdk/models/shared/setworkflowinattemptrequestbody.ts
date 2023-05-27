@@ -6,19 +6,19 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class SetWorkflowInAttemptRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "attemptNumber" })
-  attemptNumber: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "attemptNumber" })
+    attemptNumber: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "jobId" })
-  jobId: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "jobId" })
+    jobId: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "processingTaskQueue" })
-  processingTaskQueue?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "processingTaskQueue" })
+    processingTaskQueue?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workflowId" })
-  workflowId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workflowId" })
+    workflowId: string;
 }

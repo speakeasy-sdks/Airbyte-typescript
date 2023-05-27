@@ -7,16 +7,16 @@ import { OperatorConfiguration } from "./operatorconfiguration";
 import { Expose, Type } from "class-transformer";
 
 export class OperationCreate extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "operatorConfiguration" })
-  @Type(() => OperatorConfiguration)
-  operatorConfiguration: OperatorConfiguration;
+    @SpeakeasyMetadata()
+    @Expose({ name: "operatorConfiguration" })
+    @Type(() => OperatorConfiguration)
+    operatorConfiguration: OperatorConfiguration;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

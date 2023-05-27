@@ -9,42 +9,42 @@ import { FieldSchemaUpdate } from "./fieldschemaupdate";
 import { Expose, Type } from "class-transformer";
 
 export enum FieldTransformTransformType {
-  AddField = "add_field",
-  RemoveField = "remove_field",
-  UpdateFieldSchema = "update_field_schema",
+    AddField = "add_field",
+    RemoveField = "remove_field",
+    UpdateFieldSchema = "update_field_schema",
 }
 
 /**
  * Describes the difference between two Streams.
  */
 export class FieldTransform extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "addField" })
-  @Type(() => FieldAdd)
-  addField?: FieldAdd;
+    @SpeakeasyMetadata()
+    @Expose({ name: "addField" })
+    @Type(() => FieldAdd)
+    addField?: FieldAdd;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "breaking" })
-  breaking: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "breaking" })
+    breaking: boolean;
 
-  /**
-   * A field name is a list of strings that form the path to the field.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "fieldName" })
-  fieldName: string[];
+    /**
+     * A field name is a list of strings that form the path to the field.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "fieldName" })
+    fieldName: string[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "removeField" })
-  @Type(() => FieldRemove)
-  removeField?: FieldRemove;
+    @SpeakeasyMetadata()
+    @Expose({ name: "removeField" })
+    @Type(() => FieldRemove)
+    removeField?: FieldRemove;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "transformType" })
-  transformType: FieldTransformTransformType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "transformType" })
+    transformType: FieldTransformTransformType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "updateFieldSchema" })
-  @Type(() => FieldSchemaUpdate)
-  updateFieldSchema?: FieldSchemaUpdate;
+    @SpeakeasyMetadata()
+    @Expose({ name: "updateFieldSchema" })
+    @Type(() => FieldSchemaUpdate)
+    updateFieldSchema?: FieldSchemaUpdate;
 }

@@ -7,10 +7,10 @@ import { LogType } from "./logtype";
 import { Expose } from "class-transformer";
 
 export class LogsRequestBody extends SpeakeasyBase {
-  /**
-   * type/source of logs produced
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "logType" })
-  logType: LogType;
+    /**
+     * type/source of logs produced
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "logType" })
+    logType: LogType;
 }

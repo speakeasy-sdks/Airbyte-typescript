@@ -8,39 +8,39 @@ import { LogRead } from "./logread";
 import { Expose, Type } from "class-transformer";
 
 export class SynchronousJobRead extends SpeakeasyBase {
-  /**
-   * only present if a config id was provided.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "configId" })
-  configId?: string;
+    /**
+     * only present if a config id was provided.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "configId" })
+    configId?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "configType" })
-  configType: JobConfigType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "configType" })
+    configType: JobConfigType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectorConfigurationUpdated" })
-  connectorConfigurationUpdated?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectorConfigurationUpdated" })
+    connectorConfigurationUpdated?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "createdAt" })
-  createdAt: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "createdAt" })
+    createdAt: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "endedAt" })
-  endedAt: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "endedAt" })
+    endedAt: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "logs" })
-  @Type(() => LogRead)
-  logs?: LogRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "logs" })
+    @Type(() => LogRead)
+    logs?: LogRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "succeeded" })
-  succeeded: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "succeeded" })
+    succeeded: boolean;
 }

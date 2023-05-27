@@ -7,16 +7,16 @@ import { AttemptSyncConfig } from "./attemptsyncconfig";
 import { Expose, Type } from "class-transformer";
 
 export class SaveAttemptSyncConfigRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "attemptNumber" })
-  attemptNumber: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "attemptNumber" })
+    attemptNumber: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "jobId" })
-  jobId: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "jobId" })
+    jobId: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "syncConfig" })
-  @Type(() => AttemptSyncConfig)
-  syncConfig: AttemptSyncConfig;
+    @SpeakeasyMetadata()
+    @Expose({ name: "syncConfig" })
+    @Type(() => AttemptSyncConfig)
+    syncConfig: AttemptSyncConfig;
 }

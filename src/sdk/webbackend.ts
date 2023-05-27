@@ -15,670 +15,633 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
  *
  */
 export class WebBackend {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    _defaultClient: AxiosInstance;
+    _securityClient: AxiosInstance;
+    _serverURL: string;
+    _language: string;
+    _sdkVersion: string;
+    _genVersion: string;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Fetch the current state type for a connection.
-   */
-  async getStateType(
-    req: shared.ConnectionIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetStateTypeResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.ConnectionIdRequestBody(req);
+    constructor(
+        defaultClient: AxiosInstance,
+        securityClient: AxiosInstance,
+        serverURL: string,
+        language: string,
+        sdkVersion: string,
+        genVersion: string
+    ) {
+        this._defaultClient = defaultClient;
+        this._securityClient = securityClient;
+        this._serverURL = serverURL;
+        this._language = language;
+        this._sdkVersion = sdkVersion;
+        this._genVersion = genVersion;
     }
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/state/get_type";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetStateTypeResponse =
-      new operations.GetStateTypeResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.connectionStateType = httpRes?.data;
+    /**
+     * Fetch the current state type for a connection.
+     */
+    async getStateType(
+        req: shared.ConnectionIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetStateTypeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.ConnectionIdRequestBody(req);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/state/get_type";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Returns a summary of source and destination definitions that could be updated.
-   */
-  async webBackendCheckUpdates(
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendCheckUpdatesResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/check_updates";
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendCheckUpdatesResponse =
-      new operations.WebBackendCheckUpdatesResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendCheckUpdatesRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendCheckUpdatesRead
-          );
+        const res: operations.GetStateTypeResponse = new operations.GetStateTypeResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.connectionStateType = httpRes?.data;
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Returns a summary of source and destination definitions that could be updated.
+     */
+    async webBackendCheckUpdates(
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendCheckUpdatesResponse> {
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/check_updates";
 
-  /**
-   * Create a connection
-   */
-  async webBackendCreateConnection(
-    req: shared.WebBackendConnectionCreate,
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendCreateConnectionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WebBackendConnectionCreate(req);
-    }
+        const client: AxiosInstance = this._defaultClient;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/create";
+        const headers = { ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            ...config,
+        });
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendCreateConnectionResponse =
-      new operations.WebBackendCreateConnectionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendConnectionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendConnectionRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const res: operations.WebBackendCheckUpdatesResponse =
+            new operations.WebBackendCheckUpdatesResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendCheckUpdatesRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendCheckUpdatesRead
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Get a connection
-   */
-  async webBackendGetConnection(
-    req: shared.WebBackendConnectionRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendGetConnectionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WebBackendConnectionRequestBody(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/get";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendGetConnectionResponse =
-      new operations.WebBackendGetConnectionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendConnectionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendConnectionRead
-          );
+    /**
+     * Create a connection
+     */
+    async webBackendCreateConnection(
+        req: shared.WebBackendConnectionCreate,
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendCreateConnectionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WebBackendConnectionCreate(req);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/create";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Returns the current state of a workspace
-   */
-  async webBackendGetWorkspaceState(
-    req: shared.WebBackendWorkspaceState,
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendGetWorkspaceStateResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WebBackendWorkspaceState(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/workspace/state";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendGetWorkspaceStateResponse =
-      new operations.WebBackendGetWorkspaceStateResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendWorkspaceStateResult = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendWorkspaceStateResult
-          );
+        const res: operations.WebBackendCreateConnectionResponse =
+            new operations.WebBackendCreateConnectionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendConnectionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendConnectionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Get a connection
+     */
+    async webBackendGetConnection(
+        req: shared.WebBackendConnectionRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendGetConnectionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WebBackendConnectionRequestBody(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/get";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Returns all non-deleted connections for a workspace.
-   */
-  async webBackendListConnectionsForWorkspace(
-    req: shared.WebBackendConnectionListRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendListConnectionsForWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WebBackendConnectionListRequestBody(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/list";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendListConnectionsForWorkspaceResponse =
-      new operations.WebBackendListConnectionsForWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendConnectionReadList = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendConnectionReadList
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const res: operations.WebBackendGetConnectionResponse =
+            new operations.WebBackendGetConnectionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendConnectionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendConnectionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Returns the current state of a workspace
+     */
+    async webBackendGetWorkspaceState(
+        req: shared.WebBackendWorkspaceState,
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendGetWorkspaceStateResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WebBackendWorkspaceState(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/workspace/state";
 
-  /**
-   * Returns available geographies can be selected to run data syncs in a particular geography.
-   * The 'auto' entry indicates that the sync will be automatically assigned to a geography according
-   * to the platform default behavior. Entries other than 'auto' are two-letter country codes that
-   * follow the ISO 3166-1 alpha-2 standard.
-   *
-   *
-   * @remarks
-   * Returns all available geographies in which a data sync can run.
-   */
-  async webBackendListGeographies(
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendListGeographiesResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/geographies/list";
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendListGeographiesResponse =
-      new operations.WebBackendListGeographiesResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendGeographiesListResult = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendGeographiesListResult
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Update a connection
-   *
-   * @remarks
-   * Apply a patch-style update to a connection. Only fields present on the update request body will be updated.
-   * Any operations that lack an ID will be created. Then, the newly created operationId will be applied to the
-   * connection along with the rest of the operationIds in the request body.
-   * Apply a patch-style update to a connection. Only fields present on the update request body will be updated.
-   * Note that if a catalog is present in the request body, the connection's entire catalog will be replaced
-   * with the catalog from the request. This means that to modify a single stream, the entire new catalog
-   * containing the updated stream needs to be sent.
-   *
-   */
-  async webBackendUpdateConnection(
-    req: shared.WebBackendConnectionUpdate,
-    config?: AxiosRequestConfig
-  ): Promise<operations.WebBackendUpdateConnectionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WebBackendConnectionUpdate(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/update";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WebBackendUpdateConnectionResponse =
-      new operations.WebBackendUpdateConnectionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webBackendConnectionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WebBackendConnectionRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const res: operations.WebBackendGetWorkspaceStateResponse =
+            new operations.WebBackendGetWorkspaceStateResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendWorkspaceStateResult = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendWorkspaceStateResult
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Returns all non-deleted connections for a workspace.
+     */
+    async webBackendListConnectionsForWorkspace(
+        req: shared.WebBackendConnectionListRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendListConnectionsForWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WebBackendConnectionListRequestBody(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/list";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.WebBackendListConnectionsForWorkspaceResponse =
+            new operations.WebBackendListConnectionsForWorkspaceResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendConnectionReadList = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendConnectionReadList
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Returns available geographies can be selected to run data syncs in a particular geography.
+     * The 'auto' entry indicates that the sync will be automatically assigned to a geography according
+     * to the platform default behavior. Entries other than 'auto' are two-letter country codes that
+     * follow the ISO 3166-1 alpha-2 standard.
+     *
+     *
+     * @remarks
+     * Returns all available geographies in which a data sync can run.
+     */
+    async webBackendListGeographies(
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendListGeographiesResponse> {
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/geographies/list";
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.WebBackendListGeographiesResponse =
+            new operations.WebBackendListGeographiesResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendGeographiesListResult = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendGeographiesListResult
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update a connection
+     *
+     * @remarks
+     * Apply a patch-style update to a connection. Only fields present on the update request body will be updated.
+     * Any operations that lack an ID will be created. Then, the newly created operationId will be applied to the
+     * connection along with the rest of the operationIds in the request body.
+     * Apply a patch-style update to a connection. Only fields present on the update request body will be updated.
+     * Note that if a catalog is present in the request body, the connection's entire catalog will be replaced
+     * with the catalog from the request. This means that to modify a single stream, the entire new catalog
+     * containing the updated stream needs to be sent.
+     *
+     */
+    async webBackendUpdateConnection(
+        req: shared.WebBackendConnectionUpdate,
+        config?: AxiosRequestConfig
+    ): Promise<operations.WebBackendUpdateConnectionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WebBackendConnectionUpdate(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/web_backend/connections/update";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.WebBackendUpdateConnectionResponse =
+            new operations.WebBackendUpdateConnectionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webBackendConnectionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WebBackendConnectionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }

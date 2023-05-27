@@ -6,19 +6,19 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class OperatorDbt extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "dbtArguments" })
-  dbtArguments?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "dbtArguments" })
+    dbtArguments?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "dockerImage" })
-  dockerImage?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "dockerImage" })
+    dockerImage?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "gitRepoBranch" })
-  gitRepoBranch?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "gitRepoBranch" })
+    gitRepoBranch?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "gitRepoUrl" })
-  gitRepoUrl: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "gitRepoUrl" })
+    gitRepoUrl: string;
 }

@@ -8,26 +8,26 @@ import { StreamDescriptor } from "./streamdescriptor";
 import { Expose, Type } from "class-transformer";
 
 export enum StreamTransformTransformType {
-  AddStream = "add_stream",
-  RemoveStream = "remove_stream",
-  UpdateStream = "update_stream",
+    AddStream = "add_stream",
+    RemoveStream = "remove_stream",
+    UpdateStream = "update_stream",
 }
 
 export class StreamTransform extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "streamDescriptor" })
-  @Type(() => StreamDescriptor)
-  streamDescriptor: StreamDescriptor;
+    @SpeakeasyMetadata()
+    @Expose({ name: "streamDescriptor" })
+    @Type(() => StreamDescriptor)
+    streamDescriptor: StreamDescriptor;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "transformType" })
-  transformType: StreamTransformTransformType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "transformType" })
+    transformType: StreamTransformTransformType;
 
-  /**
-   * list of field transformations. order does not matter.
-   */
-  @SpeakeasyMetadata({ elemType: FieldTransform })
-  @Expose({ name: "updateStream" })
-  @Type(() => FieldTransform)
-  updateStream?: FieldTransform[];
+    /**
+     * list of field transformations. order does not matter.
+     */
+    @SpeakeasyMetadata({ elemType: FieldTransform })
+    @Expose({ name: "updateStream" })
+    @Type(() => FieldTransform)
+    updateStream?: FieldTransform[];
 }

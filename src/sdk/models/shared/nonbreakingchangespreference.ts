@@ -3,6 +3,6 @@
  */
 
 export enum NonBreakingChangesPreference {
-  Ignore = "ignore",
-  Disable = "disable",
+    Ignore = "ignore",
+    Disable = "disable",
 }

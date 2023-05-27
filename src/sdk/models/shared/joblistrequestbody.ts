@@ -8,20 +8,20 @@ import { Pagination } from "./pagination";
 import { Expose, Type } from "class-transformer";
 
 export class JobListRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "configId" })
-  configId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "configId" })
+    configId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "configTypes" })
-  configTypes: JobConfigType[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "configTypes" })
+    configTypes: JobConfigType[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "includingJobId" })
-  includingJobId?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "includingJobId" })
+    includingJobId?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "pagination" })
-  @Type(() => Pagination)
-  pagination?: Pagination;
+    @SpeakeasyMetadata()
+    @Expose({ name: "pagination" })
+    @Type(() => Pagination)
+    pagination?: Pagination;
 }

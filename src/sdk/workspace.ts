@@ -11,770 +11,705 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
  * Workspace related resources.
  */
 export class Workspace {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    _defaultClient: AxiosInstance;
+    _securityClient: AxiosInstance;
+    _serverURL: string;
+    _language: string;
+    _sdkVersion: string;
+    _genVersion: string;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Creates a workspace
-   */
-  async createWorkspace(
-    req: shared.WorkspaceCreate,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceCreate(req);
+    constructor(
+        defaultClient: AxiosInstance,
+        securityClient: AxiosInstance,
+        serverURL: string,
+        language: string,
+        sdkVersion: string,
+        genVersion: string
+    ) {
+        this._defaultClient = defaultClient;
+        this._securityClient = securityClient;
+        this._serverURL = serverURL;
+        this._language = language;
+        this._sdkVersion = sdkVersion;
+        this._genVersion = genVersion;
     }
 
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/create";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateWorkspaceResponse =
-      new operations.CreateWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceRead
-          );
+    /**
+     * Creates a workspace
+     */
+    async createWorkspace(
+        req: shared.WorkspaceCreate,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceCreate(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/create";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Deletes a workspace
-   */
-  async deleteWorkspace(
-    req: shared.WorkspaceIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceIdRequestBody(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/delete";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteWorkspaceResponse =
-      new operations.DeleteWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const res: operations.CreateWorkspaceResponse = new operations.CreateWorkspaceResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceRead = utils.objectToClass(httpRes?.data, shared.WorkspaceRead);
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Find workspace by ID
-   */
-  async getWorkspace(
-    req: shared.WorkspaceIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceIdRequestBody(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/get";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetWorkspaceResponse =
-      new operations.GetWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceRead
-          );
+    /**
+     * Deletes a workspace
+     */
+    async deleteWorkspace(
+        req: shared.WorkspaceIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceIdRequestBody(req);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/delete";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Find workspace by connection id
-   */
-  async getWorkspaceByConnectionId(
-    req: shared.ConnectionIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetWorkspaceByConnectionIdResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.ConnectionIdRequestBody(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/workspaces/get_by_connection_id";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetWorkspaceByConnectionIdResponse =
-      new operations.GetWorkspaceByConnectionIdResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceRead
-          );
+        const res: operations.DeleteWorkspaceResponse = new operations.DeleteWorkspaceResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Find workspace by ID
+     */
+    async getWorkspace(
+        req: shared.WorkspaceIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceIdRequestBody(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/get";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Find workspace by slug
-   */
-  async getWorkspaceBySlug(
-    req: shared.SlugRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetWorkspaceBySlugResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SlugRequestBody(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/workspaces/get_by_slug";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetWorkspaceBySlugResponse =
-      new operations.GetWorkspaceBySlugResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const res: operations.GetWorkspaceResponse = new operations.GetWorkspaceResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceRead = utils.objectToClass(httpRes?.data, shared.WorkspaceRead);
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Find workspace by connection id
+     */
+    async getWorkspaceByConnectionId(
+        req: shared.ConnectionIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetWorkspaceByConnectionIdResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.ConnectionIdRequestBody(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/get_by_connection_id";
 
-  /**
-   * List all workspaces registered in the current Airbyte deployment
-   */
-  async listWorkspaces(
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListWorkspacesResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/list";
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListWorkspacesResponse =
-      new operations.ListWorkspacesResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceReadList = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceReadList
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Update workspace state
-   */
-  async updateWorkspace(
-    req: shared.WorkspaceUpdate,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceUpdate(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/update";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateWorkspaceResponse =
-      new operations.UpdateWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const res: operations.GetWorkspaceByConnectionIdResponse =
+            new operations.GetWorkspaceByConnectionIdResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceRead = utils.objectToClass(httpRes?.data, shared.WorkspaceRead);
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Find workspace by slug
+     */
+    async getWorkspaceBySlug(
+        req: shared.SlugRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetWorkspaceBySlugResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SlugRequestBody(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/get_by_slug";
 
-  /**
-   * Update workspace feedback state
-   */
-  async updateWorkspaceFeedback(
-    req: shared.WorkspaceGiveFeedback,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateWorkspaceFeedbackResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceGiveFeedback(req);
-    }
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/workspaces/tag_feedback_status_as_done";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateWorkspaceFeedbackResponse =
-      new operations.UpdateWorkspaceFeedbackResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Update workspace name
-   */
-  async updateWorkspaceName(
-    req: shared.WorkspaceUpdateName,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateWorkspaceNameResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceUpdateName(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/workspaces/update_name";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateWorkspaceNameResponse =
-      new operations.UpdateWorkspaceNameResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.workspaceRead = utils.objectToClass(
-            httpRes?.data,
-            shared.WorkspaceRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const res: operations.GetWorkspaceBySlugResponse =
+            new operations.GetWorkspaceBySlugResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceRead = utils.objectToClass(httpRes?.data, shared.WorkspaceRead);
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
-        }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * List all workspaces registered in the current Airbyte deployment
+     */
+    async listWorkspaces(config?: AxiosRequestConfig): Promise<operations.ListWorkspacesResponse> {
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/list";
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListWorkspacesResponse = new operations.ListWorkspacesResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceReadList = utils.objectToClass(
+                        httpRes?.data,
+                        shared.WorkspaceReadList
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update workspace state
+     */
+    async updateWorkspace(
+        req: shared.WorkspaceUpdate,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceUpdate(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/update";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateWorkspaceResponse = new operations.UpdateWorkspaceResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceRead = utils.objectToClass(httpRes?.data, shared.WorkspaceRead);
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update workspace feedback state
+     */
+    async updateWorkspaceFeedback(
+        req: shared.WorkspaceGiveFeedback,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateWorkspaceFeedbackResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceGiveFeedback(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string =
+            baseURL.replace(/\/$/, "") + "/v1/workspaces/tag_feedback_status_as_done";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateWorkspaceFeedbackResponse =
+            new operations.UpdateWorkspaceFeedbackResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update workspace name
+     */
+    async updateWorkspaceName(
+        req: shared.WorkspaceUpdateName,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateWorkspaceNameResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceUpdateName(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/workspaces/update_name";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateWorkspaceNameResponse =
+            new operations.UpdateWorkspaceNameResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.workspaceRead = utils.objectToClass(httpRes?.data, shared.WorkspaceRead);
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }

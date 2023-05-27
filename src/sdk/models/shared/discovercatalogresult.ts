@@ -9,7 +9,7 @@ import { Expose } from "class-transformer";
  * Successful Operation
  */
 export class DiscoverCatalogResult extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "catalogId" })
-  catalogId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "catalogId" })
+    catalogId: string;
 }

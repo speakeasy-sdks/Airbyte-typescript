@@ -8,24 +8,24 @@ import { SlackNotificationConfiguration } from "./slacknotificationconfiguration
 import { Expose, Type } from "class-transformer";
 
 export class Notification extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "customerioConfiguration" })
-  customerioConfiguration?: Record<string, any>;
+    @SpeakeasyMetadata()
+    @Expose({ name: "customerioConfiguration" })
+    customerioConfiguration?: Record<string, any>;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "notificationType" })
-  notificationType: NotificationType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "notificationType" })
+    notificationType: NotificationType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sendOnFailure" })
-  sendOnFailure: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sendOnFailure" })
+    sendOnFailure: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sendOnSuccess" })
-  sendOnSuccess: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sendOnSuccess" })
+    sendOnSuccess: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "slackConfiguration" })
-  @Type(() => SlackNotificationConfiguration)
-  slackConfiguration?: SlackNotificationConfiguration;
+    @SpeakeasyMetadata()
+    @Expose({ name: "slackConfiguration" })
+    @Type(() => SlackNotificationConfiguration)
+    slackConfiguration?: SlackNotificationConfiguration;
 }

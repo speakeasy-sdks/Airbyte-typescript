@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class WorkspaceGiveFeedback extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

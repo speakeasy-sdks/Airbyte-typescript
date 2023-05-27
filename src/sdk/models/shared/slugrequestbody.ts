@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class SlugRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "slug" })
-  slug: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "slug" })
+    slug: string;
 }

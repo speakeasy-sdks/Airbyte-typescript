@@ -8,273 +8,258 @@ import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export class Scheduler {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    _defaultClient: AxiosInstance;
+    _securityClient: AxiosInstance;
+    _serverURL: string;
+    _language: string;
+    _sdkVersion: string;
+    _genVersion: string;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Run check connection for a given destination configuration
-   */
-  async executeDestinationCheckConnection(
-    req: shared.DestinationCoreConfig,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ExecuteDestinationCheckConnectionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.DestinationCoreConfig(req);
+    constructor(
+        defaultClient: AxiosInstance,
+        securityClient: AxiosInstance,
+        serverURL: string,
+        language: string,
+        sdkVersion: string,
+        genVersion: string
+    ) {
+        this._defaultClient = defaultClient;
+        this._securityClient = securityClient;
+        this._serverURL = serverURL;
+        this._language = language;
+        this._sdkVersion = sdkVersion;
+        this._genVersion = genVersion;
     }
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") +
-      "/v1/scheduler/destinations/check_connection";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ExecuteDestinationCheckConnectionResponse =
-      new operations.ExecuteDestinationCheckConnectionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.checkConnectionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.CheckConnectionRead
-          );
+    /**
+     * Run check connection for a given destination configuration
+     */
+    async executeDestinationCheckConnection(
+        req: shared.DestinationCoreConfig,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ExecuteDestinationCheckConnectionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.DestinationCoreConfig(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string =
+            baseURL.replace(/\/$/, "") + "/v1/scheduler/destinations/check_connection";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Run check connection for a given source configuration
-   */
-  async executeSourceCheckConnection(
-    req: shared.SourceCoreConfig,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ExecuteSourceCheckConnectionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceCoreConfig(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/scheduler/sources/check_connection";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ExecuteSourceCheckConnectionResponse =
-      new operations.ExecuteSourceCheckConnectionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.checkConnectionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.CheckConnectionRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const res: operations.ExecuteDestinationCheckConnectionResponse =
+            new operations.ExecuteDestinationCheckConnectionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.checkConnectionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.CheckConnectionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Run discover schema for a given source a source configuration
-   */
-  async executeSourceDiscoverSchema(
-    req: shared.SourceCoreConfig,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ExecuteSourceDiscoverSchemaResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceCoreConfig(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/scheduler/sources/discover_schema";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ExecuteSourceDiscoverSchemaResponse =
-      new operations.ExecuteSourceDiscoverSchemaResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDiscoverSchemaRead = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDiscoverSchemaRead
-          );
+    /**
+     * Run check connection for a given source configuration
+     */
+    async executeSourceCheckConnection(
+        req: shared.SourceCoreConfig,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ExecuteSourceCheckConnectionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceCoreConfig(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/scheduler/sources/check_connection";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ExecuteSourceCheckConnectionResponse =
+            new operations.ExecuteSourceCheckConnectionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.checkConnectionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.CheckConnectionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Run discover schema for a given source a source configuration
+     */
+    async executeSourceDiscoverSchema(
+        req: shared.SourceCoreConfig,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ExecuteSourceDiscoverSchemaResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceCoreConfig(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/scheduler/sources/discover_schema";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ExecuteSourceDiscoverSchemaResponse =
+            new operations.ExecuteSourceDiscoverSchemaResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDiscoverSchemaRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDiscoverSchemaRead
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }

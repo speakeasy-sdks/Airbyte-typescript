@@ -6,7 +6,7 @@
  * Method used for computing final namespace in destination
  */
 export enum NamespaceDefinitionType {
-  Source = "source",
-  Destination = "destination",
-  Customformat = "customformat",
+    Source = "source",
+    Destination = "destination",
+    Customformat = "customformat",
 }

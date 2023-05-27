@@ -7,24 +7,24 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ExecuteSourceCheckConnectionResponse extends SpeakeasyBase {
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  checkConnectionRead?: shared.CheckConnectionRead;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    checkConnectionRead?: shared.CheckConnectionRead;
 
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Input failed validation
-   */
-  @SpeakeasyMetadata()
-  invalidInputExceptionInfo?: shared.InvalidInputExceptionInfo;
+    /**
+     * Input failed validation
+     */
+    @SpeakeasyMetadata()
+    invalidInputExceptionInfo?: shared.InvalidInputExceptionInfo;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

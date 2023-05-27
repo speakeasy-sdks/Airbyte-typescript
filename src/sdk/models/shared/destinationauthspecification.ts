@@ -7,19 +7,19 @@ import { OAuth2Specification } from "./oauth2specification";
 import { Expose, Type } from "class-transformer";
 
 export enum DestinationAuthSpecificationAuthType {
-  Oauth20 = "oauth2.0",
+    Oauth20 = "oauth2.0",
 }
 
 export class DestinationAuthSpecification extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "auth_type" })
-  authType?: DestinationAuthSpecificationAuthType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "auth_type" })
+    authType?: DestinationAuthSpecificationAuthType;
 
-  /**
-   * An object containing any metadata needed to describe this connector's Oauth flow
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "oauth2Specification" })
-  @Type(() => OAuth2Specification)
-  oauth2Specification?: OAuth2Specification;
+    /**
+     * An object containing any metadata needed to describe this connector's Oauth flow
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "oauth2Specification" })
+    @Type(() => OAuth2Specification)
+    oauth2Specification?: OAuth2Specification;
 }

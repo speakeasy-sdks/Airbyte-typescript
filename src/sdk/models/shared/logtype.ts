@@ -6,6 +6,6 @@
  * type/source of logs produced
  */
 export enum LogType {
-  Server = "server",
-  Scheduler = "scheduler",
+    Server = "server",
+    Scheduler = "scheduler",
 }

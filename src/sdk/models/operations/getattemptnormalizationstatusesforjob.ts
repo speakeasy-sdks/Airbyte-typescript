@@ -7,18 +7,18 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetAttemptNormalizationStatusesForJobResponse extends SpeakeasyBase {
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  attemptNormalizationStatusReadList?: shared.AttemptNormalizationStatusReadList;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    attemptNormalizationStatusReadList?: shared.AttemptNormalizationStatusReadList;
 
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

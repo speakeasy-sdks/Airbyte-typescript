@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class SourceDefinitionIdRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinitionId" })
-  sourceDefinitionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinitionId" })
+    sourceDefinitionId: string;
 }

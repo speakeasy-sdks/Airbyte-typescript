@@ -6,8 +6,8 @@
  * Successful operation
  */
 export enum ConnectionStateType {
-  Global = "global",
-  Stream = "stream",
-  Legacy = "legacy",
-  NotSet = "not_set",
+    Global = "global",
+    Stream = "stream",
+    Legacy = "legacy",
+    NotSet = "not_set",
 }

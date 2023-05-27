@@ -6,18 +6,18 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AxiosResponse } from "axios";
 
 export class GetOpenApiSpecResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Returns the openapi specification file
-   */
-  @SpeakeasyMetadata()
-  getOpenApiSpec200TextPlainBinaryString?: Uint8Array;
+    /**
+     * Returns the openapi specification file
+     */
+    @SpeakeasyMetadata()
+    getOpenApiSpec200TextPlainBinaryString?: Uint8Array;
 }

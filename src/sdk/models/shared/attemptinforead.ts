@@ -8,13 +8,13 @@ import { LogRead } from "./logread";
 import { Expose, Type } from "class-transformer";
 
 export class AttemptInfoRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "attempt" })
-  @Type(() => AttemptRead)
-  attempt: AttemptRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "attempt" })
+    @Type(() => AttemptRead)
+    attempt: AttemptRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "logs" })
-  @Type(() => LogRead)
-  logs: LogRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "logs" })
+    @Type(() => LogRead)
+    logs: LogRead;
 }

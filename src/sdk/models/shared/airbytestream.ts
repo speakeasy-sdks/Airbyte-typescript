@@ -10,49 +10,49 @@ import { Expose } from "class-transformer";
  * the immutable schema defined by the source
  */
 export class AirbyteStream extends SpeakeasyBase {
-  /**
-   * Path to the field that will be used to determine if a record is new or modified since the last sync. If not provided by the source, the end user will have to specify the comparable themselves.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "defaultCursorField" })
-  defaultCursorField?: string[];
+    /**
+     * Path to the field that will be used to determine if a record is new or modified since the last sync. If not provided by the source, the end user will have to specify the comparable themselves.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "defaultCursorField" })
+    defaultCursorField?: string[];
 
-  /**
-   * Stream schema using Json Schema specs.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "jsonSchema" })
-  jsonSchema?: Record<string, any>;
+    /**
+     * Stream schema using Json Schema specs.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "jsonSchema" })
+    jsonSchema?: Record<string, any>;
 
-  /**
-   * Stream's name.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    /**
+     * Stream's name.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  /**
-   * Optional Source-defined namespace. Airbyte streams from the same sources should have the same namespace. Currently only used by JDBC destinations to determine what schema to write to.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "namespace" })
-  namespace?: string;
+    /**
+     * Optional Source-defined namespace. Airbyte streams from the same sources should have the same namespace. Currently only used by JDBC destinations to determine what schema to write to.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "namespace" })
+    namespace?: string;
 
-  /**
-   * If the source defines the cursor field, then any other cursor field inputs will be ignored. If it does not, either the user_provided one is used, or the default one is used as a backup.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinedCursor" })
-  sourceDefinedCursor?: boolean;
+    /**
+     * If the source defines the cursor field, then any other cursor field inputs will be ignored. If it does not, either the user_provided one is used, or the default one is used as a backup.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinedCursor" })
+    sourceDefinedCursor?: boolean;
 
-  /**
-   * If the source defines the primary key, paths to the fields that will be used as a primary key. If not provided by the source, the end user will have to specify the primary key themselves.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinedPrimaryKey" })
-  sourceDefinedPrimaryKey?: string[][];
+    /**
+     * If the source defines the primary key, paths to the fields that will be used as a primary key. If not provided by the source, the end user will have to specify the primary key themselves.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinedPrimaryKey" })
+    sourceDefinedPrimaryKey?: string[][];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "supportedSyncModes" })
-  supportedSyncModes?: SyncMode[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "supportedSyncModes" })
+    supportedSyncModes?: SyncMode[];
 }

@@ -11,887 +11,837 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
  * SourceDefinition related resources.
  */
 export class SourceDefinition {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    _defaultClient: AxiosInstance;
+    _securityClient: AxiosInstance;
+    _serverURL: string;
+    _language: string;
+    _sdkVersion: string;
+    _genVersion: string;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Creates a custom sourceDefinition for the given workspace
-   */
-  async createCustomSourceDefinition(
-    req: shared.CustomSourceDefinitionCreate,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateCustomSourceDefinitionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.CustomSourceDefinitionCreate(req);
+    constructor(
+        defaultClient: AxiosInstance,
+        securityClient: AxiosInstance,
+        serverURL: string,
+        language: string,
+        sdkVersion: string,
+        genVersion: string
+    ) {
+        this._defaultClient = defaultClient;
+        this._securityClient = securityClient;
+        this._serverURL = serverURL;
+        this._language = language;
+        this._sdkVersion = sdkVersion;
+        this._genVersion = genVersion;
     }
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/create_custom";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateCustomSourceDefinitionResponse =
-      new operations.CreateCustomSourceDefinitionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionRead
-          );
+    /**
+     * Creates a custom sourceDefinition for the given workspace
+     */
+    async createCustomSourceDefinition(
+        req: shared.CustomSourceDefinitionCreate,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateCustomSourceDefinitionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.CustomSourceDefinitionCreate(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/create_custom";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * Delete a source definition
-   */
-  async deleteSourceDefinition(
-    req: shared.SourceDefinitionIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteSourceDefinitionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceDefinitionIdRequestBody(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/delete";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteSourceDefinitionResponse =
-      new operations.DeleteSourceDefinitionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const res: operations.CreateCustomSourceDefinitionResponse =
+            new operations.CreateCustomSourceDefinitionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Get source
-   */
-  async getSourceDefinition(
-    req: shared.SourceDefinitionIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetSourceDefinitionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceDefinitionIdRequestBody(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/get";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetSourceDefinitionResponse =
-      new operations.GetSourceDefinitionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionRead
-          );
+    /**
+     * Delete a source definition
+     */
+    async deleteSourceDefinition(
+        req: shared.SourceDefinitionIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteSourceDefinitionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceDefinitionIdRequestBody(req);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/delete";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Get a sourceDefinition that is configured for the given workspace
-   */
-  async getSourceDefinitionForWorkspace(
-    req: shared.SourceDefinitionIdWithWorkspaceId,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetSourceDefinitionForWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceDefinitionIdWithWorkspaceId(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/get_for_workspace";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetSourceDefinitionForWorkspaceResponse =
-      new operations.GetSourceDefinitionForWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionRead
-          );
+        const res: operations.DeleteSourceDefinitionResponse =
+            new operations.DeleteSourceDefinitionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Get source
+     */
+    async getSourceDefinition(
+        req: shared.SourceDefinitionIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetSourceDefinitionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceDefinitionIdRequestBody(req);
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/get";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * grant a private, non-custom sourceDefinition to a given workspace
-   */
-  async grantSourceDefinitionToWorkspace(
-    req: shared.SourceDefinitionIdWithWorkspaceId,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GrantSourceDefinitionToWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceDefinitionIdWithWorkspaceId(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/grant_definition";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GrantSourceDefinitionToWorkspaceResponse =
-      new operations.GrantSourceDefinitionToWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.privateSourceDefinitionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.PrivateSourceDefinitionRead
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+
+        const res: operations.GetSourceDefinitionResponse =
+            new operations.GetSourceDefinitionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        return res;
+    }
+
+    /**
+     * Get a sourceDefinition that is configured for the given workspace
+     */
+    async getSourceDefinitionForWorkspace(
+        req: shared.SourceDefinitionIdWithWorkspaceId,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetSourceDefinitionForWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceDefinitionIdWithWorkspaceId(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/get_for_workspace";
 
-  /**
-   * List the latest sourceDefinitions Airbyte supports
-   *
-   * @remarks
-   * Guaranteed to retrieve the latest information on supported sources.
-   */
-  async listLatestSourceDefinitions(
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListLatestSourceDefinitionsResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/list_latest";
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListLatestSourceDefinitionsResponse =
-      new operations.ListLatestSourceDefinitionsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionReadList = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionReadList
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
 
-    return res;
-  }
+        const client: AxiosInstance = this._defaultClient;
 
-  /**
-   * List all private, non-custom sourceDefinitions, and for each indicate whether the given workspace has a grant for using the definition. Used by admins to view and modify a given workspace's grants.
-   */
-  async listPrivateSourceDefinitions(
-    req: shared.WorkspaceIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListPrivateSourceDefinitionsResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceIdRequestBody(req);
-    }
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/list_private";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListPrivateSourceDefinitionsResponse =
-      new operations.ListPrivateSourceDefinitionsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.privateSourceDefinitionReadList = utils.objectToClass(
-            httpRes?.data,
-            shared.PrivateSourceDefinitionReadList
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * List all the sourceDefinitions the current Airbyte deployment is configured to use
-   */
-  async listSourceDefinitions(
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListSourceDefinitionsResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/list";
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListSourceDefinitionsResponse =
-      new operations.ListSourceDefinitionsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionReadList = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionReadList
-          );
+        const res: operations.GetSourceDefinitionForWorkspaceResponse =
+            new operations.GetSourceDefinitionForWorkspaceResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * List all the sourceDefinitions the given workspace is configured to use
-   */
-  async listSourceDefinitionsForWorkspace(
-    req: shared.WorkspaceIdRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListSourceDefinitionsForWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.WorkspaceIdRequestBody(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/list_for_workspace";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListSourceDefinitionsForWorkspaceResponse =
-      new operations.ListSourceDefinitionsForWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionReadList = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionReadList
-          );
+    /**
+     * grant a private, non-custom sourceDefinition to a given workspace
+     */
+    async grantSourceDefinitionToWorkspace(
+        req: shared.SourceDefinitionIdWithWorkspaceId,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GrantSourceDefinitionToWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceDefinitionIdWithWorkspaceId(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/grant_definition";
 
-  /**
-   * revoke a grant to a private, non-custom sourceDefinition from a given workspace
-   */
-  async revokeSourceDefinitionFromWorkspace(
-    req: shared.SourceDefinitionIdWithWorkspaceId,
-    config?: AxiosRequestConfig
-  ): Promise<operations.RevokeSourceDefinitionFromWorkspaceResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceDefinitionIdWithWorkspaceId(req);
-    }
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/revoke_definition";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.RevokeSourceDefinitionFromWorkspaceResponse =
-      new operations.RevokeSourceDefinitionFromWorkspaceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Update a sourceDefinition
-   */
-  async updateSourceDefinition(
-    req: shared.SourceDefinitionUpdate,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateSourceDefinitionResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.SourceDefinitionUpdate(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/v1/source_definitions/update";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] =
-      "application/json;q=1, application/json;q=0.7, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateSourceDefinitionResponse =
-      new operations.UpdateSourceDefinitionResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.sourceDefinitionRead = utils.objectToClass(
-            httpRes?.data,
-            shared.SourceDefinitionRead
-          );
+        const res: operations.GrantSourceDefinitionToWorkspaceResponse =
+            new operations.GrantSourceDefinitionToWorkspaceResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.privateSourceDefinitionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.PrivateSourceDefinitionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
         }
-        break;
-      case httpRes?.status == 404:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.notFoundKnownExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.NotFoundKnownExceptionInfo
-          );
-        }
-        break;
-      case httpRes?.status == 422:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.invalidInputExceptionInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.InvalidInputExceptionInfo
-          );
-        }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * List the latest sourceDefinitions Airbyte supports
+     *
+     * @remarks
+     * Guaranteed to retrieve the latest information on supported sources.
+     */
+    async listLatestSourceDefinitions(
+        config?: AxiosRequestConfig
+    ): Promise<operations.ListLatestSourceDefinitionsResponse> {
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/list_latest";
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListLatestSourceDefinitionsResponse =
+            new operations.ListLatestSourceDefinitionsResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionReadList = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionReadList
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List all private, non-custom sourceDefinitions, and for each indicate whether the given workspace has a grant for using the definition. Used by admins to view and modify a given workspace's grants.
+     */
+    async listPrivateSourceDefinitions(
+        req: shared.WorkspaceIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ListPrivateSourceDefinitionsResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceIdRequestBody(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/list_private";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListPrivateSourceDefinitionsResponse =
+            new operations.ListPrivateSourceDefinitionsResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.privateSourceDefinitionReadList = utils.objectToClass(
+                        httpRes?.data,
+                        shared.PrivateSourceDefinitionReadList
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List all the sourceDefinitions the current Airbyte deployment is configured to use
+     */
+    async listSourceDefinitions(
+        config?: AxiosRequestConfig
+    ): Promise<operations.ListSourceDefinitionsResponse> {
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/list";
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListSourceDefinitionsResponse =
+            new operations.ListSourceDefinitionsResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionReadList = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionReadList
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List all the sourceDefinitions the given workspace is configured to use
+     */
+    async listSourceDefinitionsForWorkspace(
+        req: shared.WorkspaceIdRequestBody,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ListSourceDefinitionsForWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.WorkspaceIdRequestBody(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string =
+            baseURL.replace(/\/$/, "") + "/v1/source_definitions/list_for_workspace";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListSourceDefinitionsForWorkspaceResponse =
+            new operations.ListSourceDefinitionsForWorkspaceResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionReadList = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionReadList
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * revoke a grant to a private, non-custom sourceDefinition from a given workspace
+     */
+    async revokeSourceDefinitionFromWorkspace(
+        req: shared.SourceDefinitionIdWithWorkspaceId,
+        config?: AxiosRequestConfig
+    ): Promise<operations.RevokeSourceDefinitionFromWorkspaceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceDefinitionIdWithWorkspaceId(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/revoke_definition";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        if (reqBody == null || Object.keys(reqBody).length === 0)
+            throw new Error("request body is required");
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.RevokeSourceDefinitionFromWorkspaceResponse =
+            new operations.RevokeSourceDefinitionFromWorkspaceResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update a sourceDefinition
+     */
+    async updateSourceDefinition(
+        req: shared.SourceDefinitionUpdate,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateSourceDefinitionResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.SourceDefinitionUpdate(req);
+        }
+
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/source_definitions/update";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json;q=1, application/json;q=0.7, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateSourceDefinitionResponse =
+            new operations.UpdateSourceDefinitionResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.sourceDefinitionRead = utils.objectToClass(
+                        httpRes?.data,
+                        shared.SourceDefinitionRead
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.notFoundKnownExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.NotFoundKnownExceptionInfo
+                    );
+                }
+                break;
+            case httpRes?.status == 422:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.invalidInputExceptionInfo = utils.objectToClass(
+                        httpRes?.data,
+                        shared.InvalidInputExceptionInfo
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }

@@ -6,44 +6,44 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
 export enum ConnectionScheduleDataBasicScheduleTimeUnit {
-  Minutes = "minutes",
-  Hours = "hours",
-  Days = "days",
-  Weeks = "weeks",
-  Months = "months",
+    Minutes = "minutes",
+    Hours = "hours",
+    Days = "days",
+    Weeks = "weeks",
+    Months = "months",
 }
 
 export class ConnectionScheduleDataBasicSchedule extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "timeUnit" })
-  timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit;
+    @SpeakeasyMetadata()
+    @Expose({ name: "timeUnit" })
+    timeUnit: ConnectionScheduleDataBasicScheduleTimeUnit;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "units" })
-  units: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "units" })
+    units: number;
 }
 
 export class ConnectionScheduleDataCron extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "cronExpression" })
-  cronExpression: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "cronExpression" })
+    cronExpression: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "cronTimeZone" })
-  cronTimeZone: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "cronTimeZone" })
+    cronTimeZone: string;
 }
 
 /**
  * schedule for when the the connection should run, per the schedule type
  */
 export class ConnectionScheduleData extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "basicSchedule" })
-  @Type(() => ConnectionScheduleDataBasicSchedule)
-  basicSchedule?: ConnectionScheduleDataBasicSchedule;
+    @SpeakeasyMetadata()
+    @Expose({ name: "basicSchedule" })
+    @Type(() => ConnectionScheduleDataBasicSchedule)
+    basicSchedule?: ConnectionScheduleDataBasicSchedule;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "cron" })
-  @Type(() => ConnectionScheduleDataCron)
-  cron?: ConnectionScheduleDataCron;
+    @SpeakeasyMetadata()
+    @Expose({ name: "cron" })
+    @Type(() => ConnectionScheduleDataCron)
+    cron?: ConnectionScheduleDataCron;
 }

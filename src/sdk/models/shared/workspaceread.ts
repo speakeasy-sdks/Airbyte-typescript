@@ -12,65 +12,65 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class WorkspaceRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "anonymousDataCollection" })
-  anonymousDataCollection?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "anonymousDataCollection" })
+    anonymousDataCollection?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "customerId" })
-  customerId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "customerId" })
+    customerId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "defaultGeography" })
-  defaultGeography?: Geography;
+    @SpeakeasyMetadata()
+    @Expose({ name: "defaultGeography" })
+    defaultGeography?: Geography;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "displaySetupWizard" })
-  displaySetupWizard?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "displaySetupWizard" })
+    displaySetupWizard?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "email" })
-  email?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "email" })
+    email?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "feedbackDone" })
-  feedbackDone?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "feedbackDone" })
+    feedbackDone?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "firstCompletedSync" })
-  firstCompletedSync?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "firstCompletedSync" })
+    firstCompletedSync?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "initialSetupComplete" })
-  initialSetupComplete: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "initialSetupComplete" })
+    initialSetupComplete: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "news" })
-  news?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "news" })
+    news?: boolean;
 
-  @SpeakeasyMetadata({ elemType: Notification })
-  @Expose({ name: "notifications" })
-  @Type(() => Notification)
-  notifications?: Notification[];
+    @SpeakeasyMetadata({ elemType: Notification })
+    @Expose({ name: "notifications" })
+    @Type(() => Notification)
+    notifications?: Notification[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "securityUpdates" })
-  securityUpdates?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "securityUpdates" })
+    securityUpdates?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "slug" })
-  slug: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "slug" })
+    slug: string;
 
-  @SpeakeasyMetadata({ elemType: WebhookConfigRead })
-  @Expose({ name: "webhookConfigs" })
-  @Type(() => WebhookConfigRead)
-  webhookConfigs?: WebhookConfigRead[];
+    @SpeakeasyMetadata({ elemType: WebhookConfigRead })
+    @Expose({ name: "webhookConfigs" })
+    @Type(() => WebhookConfigRead)
+    webhookConfigs?: WebhookConfigRead[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class SourceReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: SourceRead })
-  @Expose({ name: "sources" })
-  @Type(() => SourceRead)
-  sources: SourceRead[];
+    @SpeakeasyMetadata({ elemType: SourceRead })
+    @Expose({ name: "sources" })
+    @Type(() => SourceRead)
+    sources: SourceRead[];
 }

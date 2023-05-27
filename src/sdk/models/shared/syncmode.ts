@@ -3,6 +3,6 @@
  */
 
 export enum SyncMode {
-  FullRefresh = "full_refresh",
-  Incremental = "incremental",
+    FullRefresh = "full_refresh",
+    Incremental = "incremental",
 }

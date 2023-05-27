@@ -7,12 +7,12 @@ import { DestinationDefinitionCreate } from "./destinationdefinitioncreate";
 import { Expose, Type } from "class-transformer";
 
 export class CustomDestinationDefinitionCreate extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "destinationDefinition" })
-  @Type(() => DestinationDefinitionCreate)
-  destinationDefinition: DestinationDefinitionCreate;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destinationDefinition" })
+    @Type(() => DestinationDefinitionCreate)
+    destinationDefinition: DestinationDefinitionCreate;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

@@ -6,11 +6,11 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class WebBackendConnectionRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectionId" })
-  connectionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectionId" })
+    connectionId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "withRefreshedCatalog" })
-  withRefreshedCatalog?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "withRefreshedCatalog" })
+    withRefreshedCatalog?: boolean;
 }

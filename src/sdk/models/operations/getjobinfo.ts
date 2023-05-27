@@ -7,30 +7,30 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetJobInfoResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Input failed validation
-   */
-  @SpeakeasyMetadata()
-  invalidInputExceptionInfo?: shared.InvalidInputExceptionInfo;
+    /**
+     * Input failed validation
+     */
+    @SpeakeasyMetadata()
+    invalidInputExceptionInfo?: shared.InvalidInputExceptionInfo;
 
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  jobInfoRead?: shared.JobInfoRead;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    jobInfoRead?: shared.JobInfoRead;
 
-  /**
-   * Object with given id was not found.
-   */
-  @SpeakeasyMetadata()
-  notFoundKnownExceptionInfo?: shared.NotFoundKnownExceptionInfo;
+    /**
+     * Object with given id was not found.
+     */
+    @SpeakeasyMetadata()
+    notFoundKnownExceptionInfo?: shared.NotFoundKnownExceptionInfo;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

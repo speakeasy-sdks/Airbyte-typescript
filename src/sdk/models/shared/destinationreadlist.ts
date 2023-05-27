@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class DestinationReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: DestinationRead })
-  @Expose({ name: "destinations" })
-  @Type(() => DestinationRead)
-  destinations: DestinationRead[];
+    @SpeakeasyMetadata({ elemType: DestinationRead })
+    @Expose({ name: "destinations" })
+    @Type(() => DestinationRead)
+    destinations: DestinationRead[];
 }

@@ -16,62 +16,62 @@ import { Expose, Type } from "class-transformer";
  * Information about a connection that shows up in the connection list view.
  */
 export class WebBackendConnectionListItem extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectionId" })
-  connectionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectionId" })
+    connectionId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "destination" })
-  @Type(() => DestinationSnippetRead)
-  destination: DestinationSnippetRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destination" })
+    @Type(() => DestinationSnippetRead)
+    destination: DestinationSnippetRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "isSyncing" })
-  isSyncing: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "isSyncing" })
+    isSyncing: boolean;
 
-  /**
-   * epoch time of the latest sync job. null if no sync job has taken place.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "latestSyncJobCreatedAt" })
-  latestSyncJobCreatedAt?: number;
+    /**
+     * epoch time of the latest sync job. null if no sync job has taken place.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "latestSyncJobCreatedAt" })
+    latestSyncJobCreatedAt?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "latestSyncJobStatus" })
-  latestSyncJobStatus?: JobStatus;
+    @SpeakeasyMetadata()
+    @Expose({ name: "latestSyncJobStatus" })
+    latestSyncJobStatus?: JobStatus;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  /**
-   * schedule for when the the connection should run, per the schedule type
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "scheduleData" })
-  @Type(() => ConnectionScheduleData)
-  scheduleData?: ConnectionScheduleData;
+    /**
+     * schedule for when the the connection should run, per the schedule type
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "scheduleData" })
+    @Type(() => ConnectionScheduleData)
+    scheduleData?: ConnectionScheduleData;
 
-  /**
-   * determine how the schedule data should be interpreted
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "scheduleType" })
-  scheduleType?: ConnectionScheduleType;
+    /**
+     * determine how the schedule data should be interpreted
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "scheduleType" })
+    scheduleType?: ConnectionScheduleType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "schemaChange" })
-  schemaChange: SchemaChange;
+    @SpeakeasyMetadata()
+    @Expose({ name: "schemaChange" })
+    schemaChange: SchemaChange;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "source" })
-  @Type(() => SourceSnippetRead)
-  source: SourceSnippetRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "source" })
+    @Type(() => SourceSnippetRead)
+    source: SourceSnippetRead;
 
-  /**
-   * Active means that data is flowing through the connection. Inactive means it is not. Deprecated means the connection is off and cannot be re-activated. the schema field describes the elements of the schema that will be synced.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status: ConnectionStatus;
+    /**
+     * Active means that data is flowing through the connection. Inactive means it is not. Deprecated means the connection is off and cannot be re-activated. the schema field describes the elements of the schema that will be synced.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status: ConnectionStatus;
 }

@@ -9,7 +9,7 @@ import { Expose } from "class-transformer";
  * Successful Operation
  */
 export class InternalOperationResult extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "succeeded" })
-  succeeded: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "succeeded" })
+    succeeded: boolean;
 }

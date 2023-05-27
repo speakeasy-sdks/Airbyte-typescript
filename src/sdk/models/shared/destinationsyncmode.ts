@@ -3,7 +3,7 @@
  */
 
 export enum DestinationSyncMode {
-  Append = "append",
-  Overwrite = "overwrite",
-  AppendDedup = "append_dedup",
+    Append = "append",
+    Overwrite = "overwrite",
+    AppendDedup = "append_dedup",
 }

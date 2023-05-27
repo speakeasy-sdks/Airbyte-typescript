@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * contains information about how a reset was configured. only populated if the job was a reset.
  */
 export class ResetConfig extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: StreamDescriptor })
-  @Expose({ name: "streamsToReset" })
-  @Type(() => StreamDescriptor)
-  streamsToReset?: StreamDescriptor[];
+    @SpeakeasyMetadata({ elemType: StreamDescriptor })
+    @Expose({ name: "streamsToReset" })
+    @Type(() => StreamDescriptor)
+    streamsToReset?: StreamDescriptor[];
 }

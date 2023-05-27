@@ -6,11 +6,11 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class DestinationDefinitionIdWithWorkspaceId extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "destinationDefinitionId" })
-  destinationDefinitionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destinationDefinitionId" })
+    destinationDefinitionId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

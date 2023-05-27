@@ -11,13 +11,13 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class JobInfoRead extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: AttemptInfoRead })
-  @Expose({ name: "attempts" })
-  @Type(() => AttemptInfoRead)
-  attempts: AttemptInfoRead[];
+    @SpeakeasyMetadata({ elemType: AttemptInfoRead })
+    @Expose({ name: "attempts" })
+    @Type(() => AttemptInfoRead)
+    attempts: AttemptInfoRead[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "job" })
-  @Type(() => JobRead)
-  job: JobRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "job" })
+    @Type(() => JobRead)
+    job: JobRead;
 }

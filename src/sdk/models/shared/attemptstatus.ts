@@ -3,7 +3,7 @@
  */
 
 export enum AttemptStatus {
-  Running = "running",
-  Failed = "failed",
-  Succeeded = "succeeded",
+    Running = "running",
+    Failed = "failed",
+    Succeeded = "succeeded",
 }

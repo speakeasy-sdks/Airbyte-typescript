@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class SlackNotificationConfiguration extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "webhook" })
-  webhook: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "webhook" })
+    webhook: string;
 }

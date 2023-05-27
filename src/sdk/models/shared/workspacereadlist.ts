@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class WorkspaceReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: WorkspaceRead })
-  @Expose({ name: "workspaces" })
-  @Type(() => WorkspaceRead)
-  workspaces: WorkspaceRead[];
+    @SpeakeasyMetadata({ elemType: WorkspaceRead })
+    @Expose({ name: "workspaces" })
+    @Type(() => WorkspaceRead)
+    workspaces: WorkspaceRead[];
 }

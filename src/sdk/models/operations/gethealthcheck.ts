@@ -7,18 +7,18 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetHealthCheckResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  healthCheckRead?: shared.HealthCheckRead;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    healthCheckRead?: shared.HealthCheckRead;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

@@ -7,16 +7,16 @@ import { AttemptStats } from "./attemptstats";
 import { Expose, Type } from "class-transformer";
 
 export class AttemptStreamStats extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "stats" })
-  @Type(() => AttemptStats)
-  stats: AttemptStats;
+    @SpeakeasyMetadata()
+    @Expose({ name: "stats" })
+    @Type(() => AttemptStats)
+    stats: AttemptStats;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "streamName" })
-  streamName: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "streamName" })
+    streamName: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "streamNamespace" })
-  streamNamespace?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "streamNamespace" })
+    streamNamespace?: string;
 }

@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class AttemptNormalizationStatusReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: AttemptNormalizationStatusRead })
-  @Expose({ name: "attemptNormalizationStatuses" })
-  @Type(() => AttemptNormalizationStatusRead)
-  attemptNormalizationStatuses?: AttemptNormalizationStatusRead[];
+    @SpeakeasyMetadata({ elemType: AttemptNormalizationStatusRead })
+    @Expose({ name: "attemptNormalizationStatuses" })
+    @Type(() => AttemptNormalizationStatusRead)
+    attemptNormalizationStatuses?: AttemptNormalizationStatusRead[];
 }

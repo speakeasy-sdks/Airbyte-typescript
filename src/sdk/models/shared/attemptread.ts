@@ -10,46 +10,46 @@ import { AttemptStreamStats } from "./attemptstreamstats";
 import { Expose, Type } from "class-transformer";
 
 export class AttemptRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "bytesSynced" })
-  bytesSynced?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "bytesSynced" })
+    bytesSynced?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "createdAt" })
-  createdAt: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "createdAt" })
+    createdAt: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "endedAt" })
-  endedAt?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "endedAt" })
+    endedAt?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "failureSummary" })
-  @Type(() => AttemptFailureSummary)
-  failureSummary?: AttemptFailureSummary;
+    @SpeakeasyMetadata()
+    @Expose({ name: "failureSummary" })
+    @Type(() => AttemptFailureSummary)
+    failureSummary?: AttemptFailureSummary;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "recordsSynced" })
-  recordsSynced?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "recordsSynced" })
+    recordsSynced?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status: AttemptStatus;
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status: AttemptStatus;
 
-  @SpeakeasyMetadata({ elemType: AttemptStreamStats })
-  @Expose({ name: "streamStats" })
-  @Type(() => AttemptStreamStats)
-  streamStats?: AttemptStreamStats[];
+    @SpeakeasyMetadata({ elemType: AttemptStreamStats })
+    @Expose({ name: "streamStats" })
+    @Type(() => AttemptStreamStats)
+    streamStats?: AttemptStreamStats[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "totalStats" })
-  @Type(() => AttemptStats)
-  totalStats?: AttemptStats;
+    @SpeakeasyMetadata()
+    @Expose({ name: "totalStats" })
+    @Type(() => AttemptStats)
+    totalStats?: AttemptStats;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "updatedAt" })
-  updatedAt: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "updatedAt" })
+    updatedAt: number;
 }

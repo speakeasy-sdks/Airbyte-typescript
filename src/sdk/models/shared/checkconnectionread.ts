@@ -7,24 +7,24 @@ import { SynchronousJobRead } from "./synchronousjobread";
 import { Expose, Type } from "class-transformer";
 
 export enum CheckConnectionReadStatus {
-  Succeeded = "succeeded",
-  Failed = "failed",
+    Succeeded = "succeeded",
+    Failed = "failed",
 }
 
 /**
  * Successful operation
  */
 export class CheckConnectionRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "jobInfo" })
-  @Type(() => SynchronousJobRead)
-  jobInfo: SynchronousJobRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "jobInfo" })
+    @Type(() => SynchronousJobRead)
+    jobInfo: SynchronousJobRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "message" })
-  message?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "message" })
+    message?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status: CheckConnectionReadStatus;
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status: CheckConnectionReadStatus;
 }

@@ -6,31 +6,31 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class OAuthConfigSpecification extends SpeakeasyBase {
-  /**
-   * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "completeOAuthOutputSpecification" })
-  completeOAuthOutputSpecification?: any;
+    /**
+     * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "completeOAuthOutputSpecification" })
+    completeOAuthOutputSpecification?: any;
 
-  /**
-   * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "completeOAuthServerInputSpecification" })
-  completeOAuthServerInputSpecification?: any;
+    /**
+     * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "completeOAuthServerInputSpecification" })
+    completeOAuthServerInputSpecification?: any;
 
-  /**
-   * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "completeOAuthServerOutputSpecification" })
-  completeOAuthServerOutputSpecification?: any;
+    /**
+     * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "completeOAuthServerOutputSpecification" })
+    completeOAuthServerOutputSpecification?: any;
 
-  /**
-   * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "oauthUserInputFromConnectorConfigSpecification" })
-  oauthUserInputFromConnectorConfigSpecification?: any;
+    /**
+     * The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "oauthUserInputFromConnectorConfigSpecification" })
+    oauthUserInputFromConnectorConfigSpecification?: any;
 }

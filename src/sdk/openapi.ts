@@ -7,78 +7,74 @@ import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export class Openapi {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    _defaultClient: AxiosInstance;
+    _securityClient: AxiosInstance;
+    _serverURL: string;
+    _language: string;
+    _sdkVersion: string;
+    _genVersion: string;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Returns the openapi specification
-   */
-  async getOpenApiSpec(
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetOpenApiSpecResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/v1/openapi";
-
-    const client: AxiosInstance = this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "text/plain";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
+    constructor(
+        defaultClient: AxiosInstance,
+        securityClient: AxiosInstance,
+        serverURL: string,
+        language: string,
+        sdkVersion: string,
+        genVersion: string
+    ) {
+        this._defaultClient = defaultClient;
+        this._securityClient = securityClient;
+        this._serverURL = serverURL;
+        this._language = language;
+        this._sdkVersion = sdkVersion;
+        this._genVersion = genVersion;
     }
 
-    const res: operations.GetOpenApiSpecResponse =
-      new operations.GetOpenApiSpecResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `text/plain`)) {
-          const resBody: string = JSON.stringify(httpRes?.data, null, 0);
-          const out: Uint8Array = new Uint8Array(resBody.length);
-          for (let i = 0; i < resBody.length; i++)
-            out[i] = resBody.charCodeAt(i);
-          res.getOpenApiSpec200TextPlainBinaryString = out;
+    /**
+     * Returns the openapi specification
+     */
+    async getOpenApiSpec(config?: AxiosRequestConfig): Promise<operations.GetOpenApiSpecResponse> {
+        const baseURL: string = this._serverURL;
+        const url: string = baseURL.replace(/\/$/, "") + "/v1/openapi";
+
+        const client: AxiosInstance = this._defaultClient;
+
+        const headers = { ...config?.headers };
+        headers["Accept"] = "text/plain";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
+        const res: operations.GetOpenApiSpecResponse = new operations.GetOpenApiSpecResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `text/plain`)) {
+                    const resBody: string = JSON.stringify(httpRes?.data, null, 0);
+                    const out: Uint8Array = new Uint8Array(resBody.length);
+                    for (let i = 0; i < resBody.length; i++) out[i] = resBody.charCodeAt(i);
+                    res.getOpenApiSpec200TextPlainBinaryString = out;
+                }
+                break;
+        }
+
+        return res;
+    }
 }

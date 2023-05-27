@@ -3,6 +3,6 @@
  */
 
 export enum NotificationType {
-  Slack = "slack",
-  Customerio = "customerio",
+    Slack = "slack",
+    Customerio = "customerio",
 }

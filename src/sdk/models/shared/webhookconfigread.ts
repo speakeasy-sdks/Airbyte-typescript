@@ -9,14 +9,14 @@ import { Expose } from "class-transformer";
  * the readable info for a webhook config; omits sensitive info e.g. auth token
  */
 export class WebhookConfigRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: string;
 
-  /**
-   * human-readable name e.g. for display in UI
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name?: string;
+    /**
+     * human-readable name e.g. for display in UI
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name?: string;
 }

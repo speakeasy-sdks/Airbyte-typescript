@@ -9,11 +9,11 @@ import { Expose } from "class-transformer";
  * A source actor catalog with the timestamp it was mostly recently updated
  */
 export class ActorCatalogWithUpdatedAt extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "catalog" })
-  catalog?: Record<string, any>;
+    @SpeakeasyMetadata()
+    @Expose({ name: "catalog" })
+    catalog?: Record<string, any>;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "updatedAt" })
-  updatedAt?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "updatedAt" })
+    updatedAt?: number;
 }

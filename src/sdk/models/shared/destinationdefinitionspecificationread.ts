@@ -13,37 +13,37 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class DestinationDefinitionSpecificationRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "advancedAuth" })
-  @Type(() => AdvancedAuth)
-  advancedAuth?: AdvancedAuth;
+    @SpeakeasyMetadata()
+    @Expose({ name: "advancedAuth" })
+    @Type(() => AdvancedAuth)
+    advancedAuth?: AdvancedAuth;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "authSpecification" })
-  @Type(() => DestinationAuthSpecification)
-  authSpecification?: DestinationAuthSpecification;
+    @SpeakeasyMetadata()
+    @Expose({ name: "authSpecification" })
+    @Type(() => DestinationAuthSpecification)
+    authSpecification?: DestinationAuthSpecification;
 
-  /**
-   * The specification for what values are required to configure the destinationDefinition.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectionSpecification" })
-  connectionSpecification?: any;
+    /**
+     * The specification for what values are required to configure the destinationDefinition.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectionSpecification" })
+    connectionSpecification?: any;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "destinationDefinitionId" })
-  destinationDefinitionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destinationDefinitionId" })
+    destinationDefinitionId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "documentationUrl" })
-  documentationUrl?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "documentationUrl" })
+    documentationUrl?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "jobInfo" })
-  @Type(() => SynchronousJobRead)
-  jobInfo: SynchronousJobRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "jobInfo" })
+    @Type(() => SynchronousJobRead)
+    jobInfo: SynchronousJobRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "supportedDestinationSyncModes" })
-  supportedDestinationSyncModes?: DestinationSyncMode[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "supportedDestinationSyncModes" })
+    supportedDestinationSyncModes?: DestinationSyncMode[];
 }

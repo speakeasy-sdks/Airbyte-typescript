@@ -9,7 +9,7 @@ import { Expose } from "class-transformer";
  * Successful operation
  */
 export class HealthCheckRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "available" })
-  available: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "available" })
+    available: boolean;
 }

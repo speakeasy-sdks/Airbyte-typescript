@@ -6,15 +6,15 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class WebBackendConnectionListRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "destinationId" })
-  destinationId?: string[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "destinationId" })
+    destinationId?: string[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceId" })
-  sourceId?: string[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceId" })
+    sourceId?: string[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

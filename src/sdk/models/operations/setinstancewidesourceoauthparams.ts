@@ -7,24 +7,24 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class SetInstancewideSourceOauthParamsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Exception occurred; see message for details.
-   */
-  @SpeakeasyMetadata()
-  knownExceptionInfo?: shared.KnownExceptionInfo;
+    /**
+     * Exception occurred; see message for details.
+     */
+    @SpeakeasyMetadata()
+    knownExceptionInfo?: shared.KnownExceptionInfo;
 
-  /**
-   * Object with given id was not found.
-   */
-  @SpeakeasyMetadata()
-  notFoundKnownExceptionInfo?: shared.NotFoundKnownExceptionInfo;
+    /**
+     * Object with given id was not found.
+     */
+    @SpeakeasyMetadata()
+    notFoundKnownExceptionInfo?: shared.NotFoundKnownExceptionInfo;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

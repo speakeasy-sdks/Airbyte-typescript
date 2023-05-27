@@ -10,33 +10,33 @@ import { SourceDefinitionRead } from "./sourcedefinitionread";
 import { Expose, Type } from "class-transformer";
 
 export class JobDebugRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "airbyteVersion" })
-  airbyteVersion: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "airbyteVersion" })
+    airbyteVersion: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "configId" })
-  configId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "configId" })
+    configId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "configType" })
-  configType: JobConfigType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "configType" })
+    configType: JobConfigType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "destinationDefinition" })
-  @Type(() => DestinationDefinitionRead)
-  destinationDefinition: DestinationDefinitionRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destinationDefinition" })
+    @Type(() => DestinationDefinitionRead)
+    destinationDefinition: DestinationDefinitionRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinition" })
-  @Type(() => SourceDefinitionRead)
-  sourceDefinition: SourceDefinitionRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinition" })
+    @Type(() => SourceDefinitionRead)
+    sourceDefinition: SourceDefinitionRead;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status: JobStatus;
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status: JobStatus;
 }

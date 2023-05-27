@@ -6,10 +6,10 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class FieldAdd extends SpeakeasyBase {
-  /**
-   * JSONSchema representation of the field
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "schema" })
-  schema?: Record<string, any>;
+    /**
+     * JSONSchema representation of the field
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "schema" })
+    schema?: Record<string, any>;
 }

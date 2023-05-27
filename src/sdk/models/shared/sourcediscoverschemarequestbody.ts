@@ -6,19 +6,19 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class SourceDiscoverSchemaRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectionId" })
-  connectionId?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectionId" })
+    connectionId?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "disable_cache" })
-  disableCache?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "disable_cache" })
+    disableCache?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "notifySchemaChange" })
-  notifySchemaChange?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "notifySchemaChange" })
+    notifySchemaChange?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceId" })
-  sourceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceId" })
+    sourceId: string;
 }

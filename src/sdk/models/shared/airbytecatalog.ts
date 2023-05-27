@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * describes the available schema (catalog).
  */
 export class AirbyteCatalog extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: AirbyteStreamAndConfiguration })
-  @Expose({ name: "streams" })
-  @Type(() => AirbyteStreamAndConfiguration)
-  streams: AirbyteStreamAndConfiguration[];
+    @SpeakeasyMetadata({ elemType: AirbyteStreamAndConfiguration })
+    @Expose({ name: "streams" })
+    @Type(() => AirbyteStreamAndConfiguration)
+    streams: AirbyteStreamAndConfiguration[];
 }

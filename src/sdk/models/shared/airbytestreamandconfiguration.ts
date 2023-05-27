@@ -11,19 +11,19 @@ import { Expose, Type } from "class-transformer";
  * each stream is split in two parts; the immutable schema from source and mutable configuration for destination
  */
 export class AirbyteStreamAndConfiguration extends SpeakeasyBase {
-  /**
-   * the mutable part of the stream to configure the destination
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "config" })
-  @Type(() => AirbyteStreamConfiguration)
-  config?: AirbyteStreamConfiguration;
+    /**
+     * the mutable part of the stream to configure the destination
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "config" })
+    @Type(() => AirbyteStreamConfiguration)
+    config?: AirbyteStreamConfiguration;
 
-  /**
-   * the immutable schema defined by the source
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "stream" })
-  @Type(() => AirbyteStream)
-  stream?: AirbyteStream;
+    /**
+     * the immutable schema defined by the source
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "stream" })
+    @Type(() => AirbyteStream)
+    stream?: AirbyteStream;
 }

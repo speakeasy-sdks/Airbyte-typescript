@@ -6,23 +6,23 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class SourceSnippetRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "icon" })
-  icon?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "icon" })
+    icon?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinitionId" })
-  sourceDefinitionId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinitionId" })
+    sourceDefinitionId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceId" })
-  sourceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceId" })
+    sourceId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceName" })
-  sourceName: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceName" })
+    sourceName: string;
 }

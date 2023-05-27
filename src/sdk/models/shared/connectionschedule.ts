@@ -6,22 +6,22 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export enum ConnectionScheduleTimeUnit {
-  Minutes = "minutes",
-  Hours = "hours",
-  Days = "days",
-  Weeks = "weeks",
-  Months = "months",
+    Minutes = "minutes",
+    Hours = "hours",
+    Days = "days",
+    Weeks = "weeks",
+    Months = "months",
 }
 
 /**
  * if null, then no schedule is set.
  */
 export class ConnectionSchedule extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "timeUnit" })
-  timeUnit: ConnectionScheduleTimeUnit;
+    @SpeakeasyMetadata()
+    @Expose({ name: "timeUnit" })
+    timeUnit: ConnectionScheduleTimeUnit;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "units" })
-  units: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "units" })
+    units: number;
 }

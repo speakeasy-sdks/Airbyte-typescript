@@ -9,39 +9,39 @@ import { ResetConfig } from "./resetconfig";
 import { Expose, Type } from "class-transformer";
 
 export class JobRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "configId" })
-  configId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "configId" })
+    configId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "configType" })
-  configType: JobConfigType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "configType" })
+    configType: JobConfigType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "createdAt" })
-  createdAt: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "createdAt" })
+    createdAt: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: number;
 
-  /**
-   * contains information about how a reset was configured. only populated if the job was a reset.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "resetConfig" })
-  @Type(() => ResetConfig)
-  resetConfig?: ResetConfig;
+    /**
+     * contains information about how a reset was configured. only populated if the job was a reset.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "resetConfig" })
+    @Type(() => ResetConfig)
+    resetConfig?: ResetConfig;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "startedAt" })
-  startedAt?: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "startedAt" })
+    startedAt?: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status: JobStatus;
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status: JobStatus;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "updatedAt" })
-  updatedAt: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "updatedAt" })
+    updatedAt: number;
 }

@@ -10,15 +10,15 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class JobReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: JobWithAttemptsRead })
-  @Expose({ name: "jobs" })
-  @Type(() => JobWithAttemptsRead)
-  jobs: JobWithAttemptsRead[];
+    @SpeakeasyMetadata({ elemType: JobWithAttemptsRead })
+    @Expose({ name: "jobs" })
+    @Type(() => JobWithAttemptsRead)
+    jobs: JobWithAttemptsRead[];
 
-  /**
-   * the total count of jobs for the specified connection
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "totalJobCount" })
-  totalJobCount: number;
+    /**
+     * the total count of jobs for the specified connection
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "totalJobCount" })
+    totalJobCount: number;
 }

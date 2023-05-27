@@ -3,7 +3,7 @@
  */
 
 export enum Geography {
-  Auto = "auto",
-  Us = "us",
-  Eu = "eu",
+    Auto = "auto",
+    Us = "us",
+    Eu = "eu",
 }

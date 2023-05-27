@@ -10,11 +10,11 @@ import { Expose, Type } from "class-transformer";
  * Describes the difference between two Airbyte catalogs.
  */
 export class CatalogDiff extends SpeakeasyBase {
-  /**
-   * list of stream transformations. order does not matter.
-   */
-  @SpeakeasyMetadata({ elemType: StreamTransform })
-  @Expose({ name: "transforms" })
-  @Type(() => StreamTransform)
-  transforms: StreamTransform[];
+    /**
+     * list of stream transformations. order does not matter.
+     */
+    @SpeakeasyMetadata({ elemType: StreamTransform })
+    @Expose({ name: "transforms" })
+    @Type(() => StreamTransform)
+    transforms: StreamTransform[];
 }

@@ -8,21 +8,21 @@ import { AttemptStreamStats } from "./attemptstreamstats";
 import { Expose, Type } from "class-transformer";
 
 export class SaveStatsRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "attemptNumber" })
-  attemptNumber: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "attemptNumber" })
+    attemptNumber: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "jobId" })
-  jobId: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "jobId" })
+    jobId: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "stats" })
-  @Type(() => AttemptStats)
-  stats: AttemptStats;
+    @SpeakeasyMetadata()
+    @Expose({ name: "stats" })
+    @Type(() => AttemptStats)
+    stats: AttemptStats;
 
-  @SpeakeasyMetadata({ elemType: AttemptStreamStats })
-  @Expose({ name: "streamStats" })
-  @Type(() => AttemptStreamStats)
-  streamStats?: AttemptStreamStats[];
+    @SpeakeasyMetadata({ elemType: AttemptStreamStats })
+    @Expose({ name: "streamStats" })
+    @Type(() => AttemptStreamStats)
+    streamStats?: AttemptStreamStats[];
 }

@@ -3,10 +3,10 @@
  */
 
 export enum JobStatus {
-  Pending = "pending",
-  Running = "running",
-  Incomplete = "incomplete",
-  Failed = "failed",
-  Succeeded = "succeeded",
-  Cancelled = "cancelled",
+    Pending = "pending",
+    Running = "running",
+    Incomplete = "incomplete",
+    Failed = "failed",
+    Succeeded = "succeeded",
+    Cancelled = "cancelled",
 }

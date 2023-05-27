@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class ConnectionReadList extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: ConnectionRead })
-  @Expose({ name: "connections" })
-  @Type(() => ConnectionRead)
-  connections: ConnectionRead[];
+    @SpeakeasyMetadata({ elemType: ConnectionRead })
+    @Expose({ name: "connections" })
+    @Type(() => ConnectionRead)
+    connections: ConnectionRead[];
 }

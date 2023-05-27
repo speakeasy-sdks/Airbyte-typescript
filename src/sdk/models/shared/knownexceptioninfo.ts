@@ -9,23 +9,23 @@ import { Expose } from "class-transformer";
  * Exception occurred; see message for details.
  */
 export class KnownExceptionInfo extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "exceptionClassName" })
-  exceptionClassName?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "exceptionClassName" })
+    exceptionClassName?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "exceptionStack" })
-  exceptionStack?: string[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "exceptionStack" })
+    exceptionStack?: string[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "message" })
-  message: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "message" })
+    message: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "rootCauseExceptionClassName" })
-  rootCauseExceptionClassName?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "rootCauseExceptionClassName" })
+    rootCauseExceptionClassName?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "rootCauseExceptionStack" })
-  rootCauseExceptionStack?: string[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "rootCauseExceptionStack" })
+    rootCauseExceptionStack?: string[];
 }

@@ -3,8 +3,8 @@
  */
 
 export enum ReleaseStage {
-  Alpha = "alpha",
-  Beta = "beta",
-  GenerallyAvailable = "generally_available",
-  Custom = "custom",
+    Alpha = "alpha",
+    Beta = "beta",
+    GenerallyAvailable = "generally_available",
+    Custom = "custom",
 }

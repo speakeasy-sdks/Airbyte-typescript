@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class LogRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "logLines" })
-  logLines: string[];
+    @SpeakeasyMetadata()
+    @Expose({ name: "logLines" })
+    logLines: string[];
 }

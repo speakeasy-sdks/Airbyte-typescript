@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export class WorkflowStateRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "running" })
-  running: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "running" })
+    running: boolean;
 }

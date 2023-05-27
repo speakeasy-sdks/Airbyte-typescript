@@ -10,8 +10,8 @@ import { Expose, Type } from "class-transformer";
  * Successful operation
  */
 export class JobOptionalRead extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "job" })
-  @Type(() => JobRead)
-  job?: JobRead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "job" })
+    @Type(() => JobRead)
+    job?: JobRead;
 }

@@ -8,40 +8,40 @@ import { AttemptFailureType } from "./attemptfailuretype";
 import { Expose } from "class-transformer";
 
 export class AttemptFailureReason extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "externalMessage" })
-  externalMessage?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "externalMessage" })
+    externalMessage?: string;
 
-  /**
-   * Indicates where the error originated. If not set, the origin of error is not well known.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "failureOrigin" })
-  failureOrigin?: AttemptFailureOrigin;
+    /**
+     * Indicates where the error originated. If not set, the origin of error is not well known.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "failureOrigin" })
+    failureOrigin?: AttemptFailureOrigin;
 
-  /**
-   * Categorizes well known errors into types for programmatic handling. If not set, the type of error is not well known.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "failureType" })
-  failureType?: AttemptFailureType;
+    /**
+     * Categorizes well known errors into types for programmatic handling. If not set, the type of error is not well known.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "failureType" })
+    failureType?: AttemptFailureType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "internalMessage" })
-  internalMessage?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "internalMessage" })
+    internalMessage?: string;
 
-  /**
-   * True if it is known that retrying may succeed, e.g. for a transient failure. False if it is known that a retry will not succeed, e.g. for a configuration issue. If not set, retryable status is not well known.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "retryable" })
-  retryable?: boolean;
+    /**
+     * True if it is known that retrying may succeed, e.g. for a transient failure. False if it is known that a retry will not succeed, e.g. for a configuration issue. If not set, retryable status is not well known.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "retryable" })
+    retryable?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "stacktrace" })
-  stacktrace?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "stacktrace" })
+    stacktrace?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "timestamp" })
-  timestamp: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "timestamp" })
+    timestamp: number;
 }

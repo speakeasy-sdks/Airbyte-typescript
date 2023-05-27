@@ -7,31 +7,31 @@ import { OAuthConfigSpecification } from "./oauthconfigspecification";
 import { Expose, Type } from "class-transformer";
 
 export enum AdvancedAuthAuthFlowType {
-  Oauth20 = "oauth2.0",
-  Oauth10 = "oauth1.0",
+    Oauth20 = "oauth2.0",
+    Oauth10 = "oauth1.0",
 }
 
 export class AdvancedAuth extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "authFlowType" })
-  authFlowType?: AdvancedAuthAuthFlowType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "authFlowType" })
+    authFlowType?: AdvancedAuthAuthFlowType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "oauthConfigSpecification" })
-  @Type(() => OAuthConfigSpecification)
-  oauthConfigSpecification?: OAuthConfigSpecification;
+    @SpeakeasyMetadata()
+    @Expose({ name: "oauthConfigSpecification" })
+    @Type(() => OAuthConfigSpecification)
+    oauthConfigSpecification?: OAuthConfigSpecification;
 
-  /**
-   * Json Path to a field in the connectorSpecification that should exist for the advanced auth to be applicable.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "predicateKey" })
-  predicateKey?: string[];
+    /**
+     * Json Path to a field in the connectorSpecification that should exist for the advanced auth to be applicable.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "predicateKey" })
+    predicateKey?: string[];
 
-  /**
-   * Value of the predicate_key fields for the advanced auth to be applicable.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "predicateValue" })
-  predicateValue?: string;
+    /**
+     * Value of the predicate_key fields for the advanced auth to be applicable.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "predicateValue" })
+    predicateValue?: string;
 }

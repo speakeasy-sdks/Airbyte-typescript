@@ -6,11 +6,11 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export enum OperatorNormalizationOption {
-  Basic = "basic",
+    Basic = "basic",
 }
 
 export class OperatorNormalization extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "option" })
-  option?: OperatorNormalizationOption;
+    @SpeakeasyMetadata()
+    @Expose({ name: "option" })
+    option?: OperatorNormalizationOption;
 }

@@ -7,18 +7,18 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class SaveSyncConfigResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Successful Operation
-   */
-  @SpeakeasyMetadata()
-  internalOperationResult?: shared.InternalOperationResult;
+    /**
+     * Successful Operation
+     */
+    @SpeakeasyMetadata()
+    internalOperationResult?: shared.InternalOperationResult;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

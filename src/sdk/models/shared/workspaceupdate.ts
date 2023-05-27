@@ -12,45 +12,45 @@ import { Expose, Type } from "class-transformer";
  * Used to apply a patch-style update to a workspace, which means that null properties remain unchanged
  */
 export class WorkspaceUpdate extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "anonymousDataCollection" })
-  anonymousDataCollection?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "anonymousDataCollection" })
+    anonymousDataCollection?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "defaultGeography" })
-  defaultGeography?: Geography;
+    @SpeakeasyMetadata()
+    @Expose({ name: "defaultGeography" })
+    defaultGeography?: Geography;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "displaySetupWizard" })
-  displaySetupWizard?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "displaySetupWizard" })
+    displaySetupWizard?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "email" })
-  email?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "email" })
+    email?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "initialSetupComplete" })
-  initialSetupComplete?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "initialSetupComplete" })
+    initialSetupComplete?: boolean;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "news" })
-  news?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "news" })
+    news?: boolean;
 
-  @SpeakeasyMetadata({ elemType: Notification })
-  @Expose({ name: "notifications" })
-  @Type(() => Notification)
-  notifications?: Notification[];
+    @SpeakeasyMetadata({ elemType: Notification })
+    @Expose({ name: "notifications" })
+    @Type(() => Notification)
+    notifications?: Notification[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "securityUpdates" })
-  securityUpdates?: boolean;
+    @SpeakeasyMetadata()
+    @Expose({ name: "securityUpdates" })
+    securityUpdates?: boolean;
 
-  @SpeakeasyMetadata({ elemType: WebhookConfigWrite })
-  @Expose({ name: "webhookConfigs" })
-  @Type(() => WebhookConfigWrite)
-  webhookConfigs?: WebhookConfigWrite[];
+    @SpeakeasyMetadata({ elemType: WebhookConfigWrite })
+    @Expose({ name: "webhookConfigs" })
+    @Type(() => WebhookConfigWrite)
+    webhookConfigs?: WebhookConfigWrite[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

@@ -7,18 +7,18 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class UpdateWorkspaceFeedbackResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Object with given id was not found.
-   */
-  @SpeakeasyMetadata()
-  notFoundKnownExceptionInfo?: shared.NotFoundKnownExceptionInfo;
+    /**
+     * Object with given id was not found.
+     */
+    @SpeakeasyMetadata()
+    notFoundKnownExceptionInfo?: shared.NotFoundKnownExceptionInfo;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

@@ -13,80 +13,80 @@ import { SourceSearch } from "./sourcesearch";
 import { Expose, Type } from "class-transformer";
 
 export class ConnectionSearch extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "connectionId" })
-  connectionId?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "connectionId" })
+    connectionId?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "destination" })
-  @Type(() => DestinationSearch)
-  destination?: DestinationSearch;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destination" })
+    @Type(() => DestinationSearch)
+    destination?: DestinationSearch;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "destinationId" })
-  destinationId?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "destinationId" })
+    destinationId?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name?: string;
 
-  /**
-   * Method used for computing final namespace in destination
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "namespaceDefinition" })
-  namespaceDefinition?: NamespaceDefinitionType;
+    /**
+     * Method used for computing final namespace in destination
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "namespaceDefinition" })
+    namespaceDefinition?: NamespaceDefinitionType;
 
-  /**
-   * Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "namespaceFormat" })
-  namespaceFormat?: string;
+    /**
+     * Used when namespaceDefinition is 'customformat'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "namespaceFormat" })
+    namespaceFormat?: string;
 
-  /**
-   * Prefix that will be prepended to the name of each stream when it is written to the destination.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "prefix" })
-  prefix?: string;
+    /**
+     * Prefix that will be prepended to the name of each stream when it is written to the destination.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "prefix" })
+    prefix?: string;
 
-  /**
-   * if null, then no schedule is set.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "schedule" })
-  @Type(() => ConnectionSchedule)
-  schedule?: ConnectionSchedule;
+    /**
+     * if null, then no schedule is set.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "schedule" })
+    @Type(() => ConnectionSchedule)
+    schedule?: ConnectionSchedule;
 
-  /**
-   * schedule for when the the connection should run, per the schedule type
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "scheduleData" })
-  @Type(() => ConnectionScheduleData)
-  scheduleData?: ConnectionScheduleData;
+    /**
+     * schedule for when the the connection should run, per the schedule type
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "scheduleData" })
+    @Type(() => ConnectionScheduleData)
+    scheduleData?: ConnectionScheduleData;
 
-  /**
-   * determine how the schedule data should be interpreted
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "scheduleType" })
-  scheduleType?: ConnectionScheduleType;
+    /**
+     * determine how the schedule data should be interpreted
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "scheduleType" })
+    scheduleType?: ConnectionScheduleType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "source" })
-  @Type(() => SourceSearch)
-  source?: SourceSearch;
+    @SpeakeasyMetadata()
+    @Expose({ name: "source" })
+    @Type(() => SourceSearch)
+    source?: SourceSearch;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceId" })
-  sourceId?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceId" })
+    sourceId?: string;
 
-  /**
-   * Active means that data is flowing through the connection. Inactive means it is not. Deprecated means the connection is off and cannot be re-activated. the schema field describes the elements of the schema that will be synced.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status?: ConnectionStatus;
+    /**
+     * Active means that data is flowing through the connection. Inactive means it is not. Deprecated means the connection is off and cannot be re-activated. the schema field describes the elements of the schema that will be synced.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status?: ConnectionStatus;
 }

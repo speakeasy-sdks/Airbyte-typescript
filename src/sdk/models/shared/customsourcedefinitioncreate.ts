@@ -7,12 +7,12 @@ import { SourceDefinitionCreate } from "./sourcedefinitioncreate";
 import { Expose, Type } from "class-transformer";
 
 export class CustomSourceDefinitionCreate extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "sourceDefinition" })
-  @Type(() => SourceDefinitionCreate)
-  sourceDefinition: SourceDefinitionCreate;
+    @SpeakeasyMetadata()
+    @Expose({ name: "sourceDefinition" })
+    @Type(() => SourceDefinitionCreate)
+    sourceDefinition: SourceDefinitionCreate;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "workspaceId" })
-  workspaceId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "workspaceId" })
+    workspaceId: string;
 }

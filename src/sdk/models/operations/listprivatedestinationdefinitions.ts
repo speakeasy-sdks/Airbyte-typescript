@@ -7,18 +7,18 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ListPrivateDestinationDefinitionsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Successful operation
-   */
-  @SpeakeasyMetadata()
-  privateDestinationDefinitionReadList?: shared.PrivateDestinationDefinitionReadList;
+    /**
+     * Successful operation
+     */
+    @SpeakeasyMetadata()
+    privateDestinationDefinitionReadList?: shared.PrivateDestinationDefinitionReadList;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

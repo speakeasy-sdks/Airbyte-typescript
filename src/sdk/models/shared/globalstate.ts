@@ -7,12 +7,12 @@ import { StreamState } from "./streamstate";
 import { Expose, Type } from "class-transformer";
 
 export class GlobalState extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "shared_state" })
-  sharedState?: Record<string, any>;
+    @SpeakeasyMetadata()
+    @Expose({ name: "shared_state" })
+    sharedState?: Record<string, any>;
 
-  @SpeakeasyMetadata({ elemType: StreamState })
-  @Expose({ name: "streamStates" })
-  @Type(() => StreamState)
-  streamStates: StreamState[];
+    @SpeakeasyMetadata({ elemType: StreamState })
+    @Expose({ name: "streamStates" })
+    @Type(() => StreamState)
+    streamStates: StreamState[];
 }
