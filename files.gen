@@ -21,6 +21,7 @@ src/sdk/webbackend.ts
 src/sdk/workspace.ts
 src/sdk/sdk.ts
 .eslintrc.yml
+.gitignore
 jest.config.js
 package-lock.json
 package.json
