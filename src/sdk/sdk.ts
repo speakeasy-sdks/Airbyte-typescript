@@ -57,8 +57,8 @@ export class SDKConfiguration {
     serverURL: string;
     serverDefaults: any;
     language = "typescript";
-    sdkVersion = "1.8.0";
-    genVersion = "2.35.3";
+    sdkVersion = "1.8.1";
+    genVersion = "2.35.9";
 
     public constructor(init?: Partial<SDKConfiguration>) {
         Object.assign(this, init);
@@ -66,7 +66,7 @@ export class SDKConfiguration {
 }
 
 /**
- * Airbyte Configuration API
+ * Airbyte Configuration API: Airbyte Configuration API
  *
  * @remarks
  * [https://airbyte.io](https://airbyte.io).
