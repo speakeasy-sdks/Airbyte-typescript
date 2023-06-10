@@ -1,0 +1,9 @@
+# DestinationAuthSpecification
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `authType`                                                                                          | [DestinationAuthSpecificationAuthType](../../models/shared/destinationauthspecificationauthtype.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `oauth2Specification`                                                                               | [OAuth2Specification](../../models/shared/oauth2specification.md)                                   | :heavy_minus_sign:                                                                                  | An object containing any metadata needed to describe this connector's Oauth flow                    |

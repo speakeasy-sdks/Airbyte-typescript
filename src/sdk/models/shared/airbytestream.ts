@@ -3,8 +3,9 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { StreamJsonSchema } from "./streamjsonschema";
 import { SyncMode } from "./syncmode";
-import { Expose } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 
 /**
  * the immutable schema defined by the source
@@ -22,7 +23,8 @@ export class AirbyteStream extends SpeakeasyBase {
      */
     @SpeakeasyMetadata()
     @Expose({ name: "jsonSchema" })
-    jsonSchema?: Record<string, any>;
+    @Type(() => StreamJsonSchema)
+    jsonSchema?: StreamJsonSchema;
 
     /**
      * Stream's name.

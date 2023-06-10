@@ -3,6 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { CustomerioNotificationConfiguration } from "./customerionotificationconfiguration";
 import { NotificationType } from "./notificationtype";
 import { SlackNotificationConfiguration } from "./slacknotificationconfiguration";
 import { Expose, Type } from "class-transformer";
@@ -10,7 +11,8 @@ import { Expose, Type } from "class-transformer";
 export class Notification extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "customerioConfiguration" })
-    customerioConfiguration?: Record<string, any>;
+    @Type(() => CustomerioNotificationConfiguration)
+    customerioConfiguration?: CustomerioNotificationConfiguration;
 
     @SpeakeasyMetadata()
     @Expose({ name: "notificationType" })

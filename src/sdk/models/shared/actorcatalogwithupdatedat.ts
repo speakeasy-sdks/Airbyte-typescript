@@ -3,7 +3,9 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { Expose } from "class-transformer";
+import { Expose, Type } from "class-transformer";
+
+export class ActorCatalogWithUpdatedAtCatalog extends SpeakeasyBase {}
 
 /**
  * A source actor catalog with the timestamp it was mostly recently updated
@@ -11,7 +13,8 @@ import { Expose } from "class-transformer";
 export class ActorCatalogWithUpdatedAt extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "catalog" })
-    catalog?: Record<string, any>;
+    @Type(() => ActorCatalogWithUpdatedAtCatalog)
+    catalog?: ActorCatalogWithUpdatedAtCatalog;
 
     @SpeakeasyMetadata()
     @Expose({ name: "updatedAt" })

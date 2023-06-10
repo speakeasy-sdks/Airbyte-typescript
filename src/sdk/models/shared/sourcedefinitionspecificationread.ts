@@ -5,6 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AdvancedAuth } from "./advancedauth";
 import { SourceAuthSpecification } from "./sourceauthspecification";
+import { SourceDefinitionSpecification } from "./sourcedefinitionspecification";
 import { SynchronousJobRead } from "./synchronousjobread";
 import { Expose, Type } from "class-transformer";
 
@@ -27,7 +28,8 @@ export class SourceDefinitionSpecificationRead extends SpeakeasyBase {
      */
     @SpeakeasyMetadata()
     @Expose({ name: "connectionSpecification" })
-    connectionSpecification?: Record<string, any>;
+    @Type(() => SourceDefinitionSpecification)
+    connectionSpecification?: SourceDefinitionSpecification;
 
     @SpeakeasyMetadata()
     @Expose({ name: "documentationUrl" })

@@ -1,0 +1,12 @@
+# CreateConnectionResponse
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `connectionRead`                                                                     | [shared.ConnectionRead](../../models/shared/connectionread.md)                       | :heavy_minus_sign:                                                                   | Successful operation                                                                 |
+| `contentType`                                                                        | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `invalidInputExceptionInfo`                                                          | [shared.InvalidInputExceptionInfo](../../models/shared/invalidinputexceptioninfo.md) | :heavy_minus_sign:                                                                   | Input failed validation                                                              |
+| `statusCode`                                                                         | *number*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `rawResponse`                                                                        | [AxiosResponse>](https://axios-http.com/docs/res_schema)                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |

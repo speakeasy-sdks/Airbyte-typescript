@@ -3,13 +3,15 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { StateBlob } from "./stateblob";
 import { StreamState } from "./streamstate";
 import { Expose, Type } from "class-transformer";
 
 export class GlobalState extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "shared_state" })
-    sharedState?: Record<string, any>;
+    @Type(() => StateBlob)
+    sharedState?: StateBlob;
 
     @SpeakeasyMetadata({ elemType: StreamState })
     @Expose({ name: "streamStates" })

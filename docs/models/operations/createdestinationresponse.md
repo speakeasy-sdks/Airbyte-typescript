@@ -1,0 +1,12 @@
+# CreateDestinationResponse
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `contentType`                                                                        | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `destinationRead`                                                                    | [shared.DestinationRead](../../models/shared/destinationread.md)                     | :heavy_minus_sign:                                                                   | Successful operation                                                                 |
+| `invalidInputExceptionInfo`                                                          | [shared.InvalidInputExceptionInfo](../../models/shared/invalidinputexceptioninfo.md) | :heavy_minus_sign:                                                                   | Input failed validation                                                              |
+| `statusCode`                                                                         | *number*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `rawResponse`                                                                        | [AxiosResponse>](https://axios-http.com/docs/res_schema)                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |

@@ -3,6 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { StateBlob } from "./stateblob";
 import { StreamDescriptor } from "./streamdescriptor";
 import { Expose, Type } from "class-transformer";
 
@@ -14,5 +15,6 @@ export class StreamState extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "streamState" })
-    streamState?: Record<string, any>;
+    @Type(() => StateBlob)
+    streamState?: StateBlob;
 }

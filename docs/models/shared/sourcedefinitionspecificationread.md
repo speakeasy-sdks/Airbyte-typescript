@@ -1,0 +1,15 @@
+# SourceDefinitionSpecificationRead
+
+Successful operation
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `advancedAuth`                                                                        | [AdvancedAuth](../../models/shared/advancedauth.md)                                   | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `authSpecification`                                                                   | [SourceAuthSpecification](../../models/shared/sourceauthspecification.md)             | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `connectionSpecification`                                                             | [SourceDefinitionSpecification](../../models/shared/sourcedefinitionspecification.md) | :heavy_minus_sign:                                                                    | The specification for what values are required to configure the sourceDefinition.     |
+| `documentationUrl`                                                                    | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `jobInfo`                                                                             | [SynchronousJobRead](../../models/shared/synchronousjobread.md)                       | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `sourceDefinitionId`                                                                  | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |

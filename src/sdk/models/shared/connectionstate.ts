@@ -5,6 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConnectionStateType } from "./connectionstatetype";
 import { GlobalState } from "./globalstate";
+import { StateBlob } from "./stateblob";
 import { StreamState } from "./streamstate";
 import { Expose, Type } from "class-transformer";
 
@@ -23,7 +24,8 @@ export class ConnectionState extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "state" })
-    state?: Record<string, any>;
+    @Type(() => StateBlob)
+    state?: StateBlob;
 
     @SpeakeasyMetadata()
     @Expose({ name: "stateType" })

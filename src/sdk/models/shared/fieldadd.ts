@@ -3,7 +3,8 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { Expose } from "class-transformer";
+import { FieldSchema } from "./fieldschema";
+import { Expose, Type } from "class-transformer";
 
 export class FieldAdd extends SpeakeasyBase {
     /**
@@ -11,5 +12,6 @@ export class FieldAdd extends SpeakeasyBase {
      */
     @SpeakeasyMetadata()
     @Expose({ name: "schema" })
-    schema?: Record<string, any>;
+    @Type(() => FieldSchema)
+    schema?: FieldSchema;
 }

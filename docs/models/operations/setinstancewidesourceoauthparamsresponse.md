@@ -1,0 +1,12 @@
+# SetInstancewideSourceOauthParamsResponse
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `contentType`                                                                          | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `knownExceptionInfo`                                                                   | [shared.KnownExceptionInfo](../../models/shared/knownexceptioninfo.md)                 | :heavy_minus_sign:                                                                     | Exception occurred; see message for details.                                           |
+| `notFoundKnownExceptionInfo`                                                           | [shared.NotFoundKnownExceptionInfo](../../models/shared/notfoundknownexceptioninfo.md) | :heavy_minus_sign:                                                                     | Object with given id was not found.                                                    |
+| `statusCode`                                                                           | *number*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `rawResponse`                                                                          | [AxiosResponse>](https://axios-http.com/docs/res_schema)                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |

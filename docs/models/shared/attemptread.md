@@ -1,0 +1,17 @@
+# AttemptRead
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `bytesSynced`                                                         | *number*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `createdAt`                                                           | *number*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
+| `endedAt`                                                             | *number*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `failureSummary`                                                      | [AttemptFailureSummary](../../models/shared/attemptfailuresummary.md) | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `id`                                                                  | *number*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
+| `recordsSynced`                                                       | *number*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `status`                                                              | [AttemptStatus](../../models/shared/attemptstatus.md)                 | :heavy_check_mark:                                                    | N/A                                                                   |
+| `streamStats`                                                         | [AttemptStreamStats](../../models/shared/attemptstreamstats.md)[]     | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `totalStats`                                                          | [AttemptStats](../../models/shared/attemptstats.md)                   | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `updatedAt`                                                           | *number*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
